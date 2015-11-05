@@ -1,0 +1,2952 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "RASD"
+\pdf_author "Andrea Tirinzoni - Matteo Papini"
+\pdf_subject "MyTaxiService"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "linkcolor=black, citecolor=black, urlcolor=blue, filecolor=blue, pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=XYZ, plainpages=false"
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{./title_page_1.tex}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+This is the Requirement Analysis and Specification Document (RASD) for the
+ myTaxiService system.
+ This document precisely describes the given problem, the customer's goals
+ and the features of the system to be implemented.
+ It is intended to be the starting point for developers and a common agreement
+ with the customer.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+The aim of MyTaxiService is to improve the public taxi service of Milan,
+ both from an administration perspective and from the point of view of passenger
+s.
+ A brief description of the system to be implemented, as outlined by the
+ customer, is now provided.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+All services addressed to passengers are accessible via both a mobile app
+ and a web application:
+\end_layout
+
+\begin_layout Itemize
+Taxi call: the passenger requests a taxi for as soon as possible, by specifying
+ the meeting point; as a confirmation, she receives the code of the incoming
+ taxi and the maximum waiting time;
+\end_layout
+
+\begin_layout Itemize
+Taxi reservation: the passenger requests a taxi for a precise time and place.
+ She has to specify the meeting point, the destination and the time of the
+ meeting with at least two hours in advance.
+ As a confirmation, she receives the code of the incoming taxi approximately
+ ten minutes before the meeting time.
+\end_layout
+
+\begin_layout Standard
+Users are able to sign up to the service, by using either the mobile app
+ or the web application and providing a phone number and a password.
+ Users can check the system notifications from both interfaces.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+ Taxi drivers whose state is set to free receive requests through a mobile
+ app.
+ They also use the app to perform the following actions:
+\end_layout
+
+\begin_layout Itemize
+Changing their state from free to busy or vice versa;
+\end_layout
+
+\begin_layout Itemize
+Accepting requests;
+\end_layout
+
+\begin_layout Itemize
+Refusing requests.
+ 
+\end_layout
+
+\begin_layout Standard
+The system manages the requests in an efficient way:
+\begin_inset Newline newline
+\end_inset
+
+The city is divided into zones having an area of approximately 2 km2.
+ Each zone is associated to a queue containing all the taxi drivers currently
+ in that zone.
+ The position of the taxis is provided by the drivers’ app through GPS.
+ When a taxi driver sets his state to free, he is automatically added to
+ the queue of the zone he is currently in.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Each new request is forwarded to the taxi drivers queueing in the zone containin
+g the meeting point, beginning with the driver that has been free for the
+ most time, until one of them accepts it.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+MyTaxiService also provides some APIs concerning the call and the reservation
+ functionalities, which can be used by external developers in their projects.
+\end_layout
+
+\begin_layout Subsection
+Definitions, acronyms and abbreviations
+\end_layout
+
+\begin_layout Subsubsection
+Definitions
+\end_layout
+
+\begin_layout Standard
+Precise definitions of some recurrent terms and expressions are provided:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+User
+\series default
+: someone who uses the MyTaxiService mobile app for passengers or the MyTaxiServ
+ice web application.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Guest
+\series default
+: a user who is not registered.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Passenger
+\series default
+: a registered user.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi
+\series default
+: a vehicle used to provide cab service in the city, denoted by a unique
+ code assigned by the Government.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi driver
+\series default
+: a person who is granted access to the MyTaxiService mobile app for drivers
+ by the Government.
+ A logged in taxi driver, at any given time, is associated to exactly one
+ taxi, so in the document we will refer to the taxi by addressing the driver
+ and vice versa.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi ID
+\series default
+: the code assigned to a certain taxi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Meeting point
+\series default
+: the place in the city where the passenger wants to have a taxi sent to.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Zone
+\series default
+: an area of the city of approximately 2 km2;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Waiting time
+\series default
+: the amount of time the passenger has to wait from when she receives the
+ confirmation of an incoming taxi to when the taxi reaches the meeting point.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Request (to a taxi driver)
+\series default
+: the demand to a taxi driver to reach a meeting point as soon as possible.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+State (of the taxi driver)
+\series default
+: can be either: 
+\begin_inset Newline newline
+\end_inset
+
+- Free: the taxi driver is ready to receive requests;
+\begin_inset Newline newline
+\end_inset
+
+- Busy: the taxi driver cannot or does not want to receive requests;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi call
+\series default
+: the act of requesting a taxi for as soon as possible.
+ Sometimes simply referred to as “call”.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi reservation
+\series default
+: the act of requesting a taxi for a certain time in the future.
+ Sometimes simply referred to as “reservation”.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi allocation
+\series default
+: the operation performed by the central system to allocate a taxi either
+ for a call or a reservation.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Central system
+\series default
+: the server part of the software.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Passenger application
+\series default
+: a term referring both to the mobile app for passengers and to the web
+ application.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Driver app
+\series default
+: the mobile app used by taxi drivers.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Acronyms
+\end_layout
+
+\begin_layout Standard
+The following acronyms will be used in this document:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RASD
+\series default
+: Requirement Analysis and Specification Document;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+API
+\series default
+: Application Programming Interface;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+GPS
+\series default
+: Global Positioning System;
+\end_layout
+
+\begin_layout Subsubsection
+Abbreviations
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+App
+\series default
+: Application;
+\end_layout
+
+\begin_layout Subsection
+Goals
+\end_layout
+
+\begin_layout Standard
+The goals of myTaxiService are the following:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G1]
+\series default
+ Every time a passenger calls a taxi, she gets one;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G2]
+\series default
+ Passengers know the maximum waiting time for the taxi they have been assigned
+ to;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G3]
+\series default
+ Passengers are able to identify the taxi they have been assigned to;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G4]
+\series default
+ Taxi drivers are able to recognize the passenger they have been assigned
+ to;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G5]
+\series default
+ Taxi drivers are forwarded only calls in which the meeting point is in
+ their current zone;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G6] 
+\series default
+The taxi driver who has been waiting for the longest time in a certain zone
+ is the first to receive a request from that zone;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G7]
+\series default
+ Taxi drivers receive requests only when they are free;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G8]
+\series default
+ Passengers can reserve a taxi only for a time at least two hours from the
+ reservation;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G9]
+\series default
+ External developers have the possibility to use the taxi call and reservation
+ function of MyTaxiService in their applications;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G10]
+\series default
+ Each reserved taxi arrives at the meeting point at most two minutes late;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[G11]
+\series default
+ Taxi drivers receive only and all the requests relative to the taxi they
+ are currently driving.
+ 
+\end_layout
+
+\begin_layout Subsection
+Domain assumptions
+\end_layout
+
+\begin_layout Standard
+The following domain assumptions will be considered:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D1]
+\series default
+ For each zone and at any time at least one taxi is available;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D2]
+\series default
+ When taxi drivers accept a call, they will get to the meeting point as
+ soon as possible;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D3]
+\series default
+ Taxi drivers are able to get to any location in their current zone in at
+ most 10 minutes;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D4]
+\series default
+ Taxi identifiers are clearly visible from the outside;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D5]
+\series default
+ Users provide correct personal data at registration;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D6]
+\series default
+ Each request is accepted by at least one taxi driver within 2 minutes;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D7]
+\series default
+ When free, a taxi driver does not change zone;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D8]
+\series default
+ Zones cover all the city territory and never intersect;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D9]
+\series default
+ Taxi GPS always work and provide the correct location;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D10] 
+\series default
+At login, taxi drivers provide the ID of the taxi they are actually driving;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[D11]
+\series default
+ Taxi drivers redo login each time they change taxi.
+ 
+\end_layout
+
+\begin_layout Subsection
+References
+\end_layout
+
+\begin_layout Itemize
+"Assignments 1 and 2.pdf"
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Standard
+The document is structured as follows:
+\end_layout
+
+\begin_layout Itemize
+Part one gives a general description of the problem, states the customer’s
+ goals and specify the domain assumptions that will be considered;
+\end_layout
+
+\begin_layout Itemize
+Part two describes the final product and the constraints to its development;
+\end_layout
+
+\begin_layout Itemize
+Part three provides both functional and nonfunctional requirements and a
+ description of the system in form of UML models.
+\end_layout
+
+\begin_layout Itemize
+Appendix A provides an Alloy model of the core part of the system.
+\end_layout
+
+\begin_layout Section
+Overall description
+\end_layout
+
+\begin_layout Subsection
+Product perspective
+\end_layout
+
+\begin_layout Standard
+The application to be developed is self-contained and, thus, it is not part
+ of an existing system.
+ Its interfaces are listed below.
+\end_layout
+
+\begin_layout Subsubsection
+System interfaces
+\end_layout
+
+\begin_layout Standard
+The application will not have any administration interface.
+\end_layout
+
+\begin_layout Subsubsection
+User interfaces
+\end_layout
+
+\begin_layout Standard
+The application has two types of user interfaces: the one used by passengers
+ to access the services (available both from mobile and web) and the one
+ used by taxi drivers to communicate with the central system (available
+ only on the mobile platform).
+\end_layout
+
+\begin_layout Subsubsection
+Hardware interfaces
+\end_layout
+
+\begin_layout Standard
+The mobile user interfaces require only a cell phone with IOS, Android or
+ Windows Phone.
+ The web interface requires only a computer with a web browser installed.
+ Both require Internet access.
+ Taxi drivers' phones also require GPS.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The central system requires a database to store its data.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Software interfaces
+\end_layout
+
+\begin_layout Standard
+The application provides APIs to external developers, by which they can
+ access the passenger services of the system from their projects.
+\begin_inset Newline newline
+\end_inset
+
+The application uses Google Maps APIs.
+\end_layout
+
+\begin_layout Subsection
+Product functions
+\end_layout
+
+\begin_layout Standard
+See part 3.
+\end_layout
+
+\begin_layout Subsection
+User characteristics
+\end_layout
+
+\begin_layout Standard
+The application is intended to be easily accessible by anyone.
+ Thus, the general user (i.e., a passenger) needs only to be familiar with
+ smart phones and/or Internet browsing.
+\begin_inset Newline newline
+\end_inset
+
+Each taxi driver will be trained to properly use the respective application.
+ This last one will be very intuitive and user-friendly, thus no prior knowledge
+ is required, nor is a hard training.
+\end_layout
+
+\begin_layout Subsection
+Constraints
+\end_layout
+
+\begin_layout Subsubsection
+Hardware limitations
+\end_layout
+
+\begin_layout Standard
+The mobile application must be available on the most common phone operating
+ system (IOS, Android, and Windows Phone).
+\end_layout
+
+\begin_layout Subsubsection
+Parallel operation
+\end_layout
+
+\begin_layout Standard
+The central system must be able to handle simultaneous requests.
+\end_layout
+
+\begin_layout Subsubsection
+Safety and security considerations
+\end_layout
+
+\begin_layout Standard
+User's privacy must be guaranteed (according to law).
+\end_layout
+
+\begin_layout Subsection
+Assumptions and dependencies
+\end_layout
+
+\begin_layout Standard
+See part 1.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Specific requirements
+\end_layout
+
+\begin_layout Subsection
+External interface requirements
+\end_layout
+
+\begin_layout Subsubsection
+Passenger interface
+\end_layout
+
+\begin_layout Standard
+As already mentioned, the passenger interface is available both from a web
+ platform and a mobile app.
+ Considering the only difference between the two is a matter of visualization,
+ whereas the functions are the same, they will be treated as one.
+ The term "screen" will be used to denote both a webpage and a mobile view.
+ The provided functions are detailed below.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The first screen showed to a non-logged-in user allows her only to register
+ or sign in.
+ If the user chooses "register", the registration screen will be showed.
+ Here the user must enter her cell phone number (auto-completed on the mobile
+ platform), a password and other personal data (name and surname), and confirm
+ by clicking "submit".
+ If the user chooses "sign in", the login screen will be showed.
+ Here the user must enter her cell phone number (again auto-completed on
+ the mobile platform) and her password.
+\begin_inset Newline newline
+\end_inset
+
+The screen showed to a logged-in user provides the following functionalities:
+ taxi call, taxi reservation and notification view.
+ In the taxi call screen, the user must specify the meeting point (by either
+ selecting it manually on an embedded Google maps service or by getting
+ the current location through GPS) and click "call now".
+ In the taxi reservation screen, the user must specify the meeting point
+ and the destination (using the same process described above), the meeting
+ time and click "reserve now".
+ In the notification screen, the messages from the central system are visualized.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Welcome screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/welcome.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Registration screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/register.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Login screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/login.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Main screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/main.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Call Taxi screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/call.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Reservation screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/reservation.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Notification screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/notifications.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Driver interface
+\end_layout
+
+\begin_layout Standard
+The driver interface is available only on the mobile platform.
+ The first screen showed to a non-logged-in taxi driver allows her only
+ to sign in.
+ To do so, she must enter the password provided by the government and the
+ ID of the taxi she is currently driving.
+ Identification is based on mobile phone number, automatically retrieved
+ by the application.
+\begin_inset Newline newline
+\end_inset
+
+The screen showed to a logged-in driver allows her to change state and shows
+ the queue zone and position (if free).
+ When a request is received, the request screen automatically pops up and
+ allows her to accept or refuse (while showing meeting point and passenger
+ name).
+ If the request is accepted, the main screen is substituted with a screen
+ containing all the information about the request (meeting point, passenger's
+ name and phone number).
+ When the run is completed, the driver can close this screen by clicking
+ "Run completed".
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Driver login screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/loginDriver.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Driver login screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/mainDriver.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Request accepted screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/accepted.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+Request screen
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/MOCKUPS/request.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Functional requirements
+\end_layout
+
+\begin_layout Subsubsection
+[G1] Every time a passenger calls a taxi, she gets one
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D1,D2,D3,D6,D8.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R1]
+\series default
+ Every taxi call to the central system is immediately forwarded to the queue
+ associated to the zone containing the required meeting point.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R2]
+\series default
+ For each reservation, a request is sent to the queue associated to the
+ zone containing the required meeting point ten minutes before the meeting
+ time.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R3]
+\series default
+ A request from the central system to taxi drivers always includes the meeting
+ point, the passenger's name and her phone number.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+[G2] Passengers know the maximum waiting time for the taxi they have been
+ assigned to
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D2,D3,D9.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R4]
+\series default
+ For each taxi allocation, the central system calculates the maximum waiting
+ time based on the taxi GPS location and the meeting point.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R5]
+\series default
+ Each time a taxi is allocated, the passenger is notified with the maximum
+ waiting time.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R15]
+\series default
+ A request is automatically refused if the taxi driver doesn't accept within
+ 30 seconds.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+[G3] Passengers are able to identify the taxi they have been assigned to
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D4.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R6]
+\series default
+ Each time a taxi is allocated, the passenger is notified with the incoming
+ taxi ID.
+\end_layout
+
+\begin_layout Subsubsection
+[G4] Taxi drivers are able to recognize the passenger they have been assigned
+ to
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D5.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R3]
+\series default
+ A request from the central system to taxi drivers always includes the meeting
+ point, the passenger's name and her phone number.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+[G5] Taxi drivers are forwarded only calls in which the meeting point is
+ in their current zone
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D7,D8.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R1]
+\series default
+ Every taxi call to the central system is immediately forwarded to the queue
+ associated to the zone containing the required meeting point.
+\end_layout
+
+\begin_layout Subsubsection
+[G6] The taxi driver who has been waiting for the longest time in a certain
+ zone is the first to receive a request from that zone
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D7,D8.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R7]
+\series default
+ When a taxi driver sets her state to free, her taxi ID is inserted in the
+ last position of the queue corresponding to her current location.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R8]
+\series default
+ When a request arrives at a queue, it is forwarded in order to the drivers
+ of the taxis in the queue, beginning from the first position, until someone
+ accepts.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R9]
+\series default
+ When a taxi driver accepts a request, her state is set to busy.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R10]
+\series default
+ When the state of a taxi driver turns to busy, her taxi is deleted from
+ the queue corresponding to her current location.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R11]
+\series default
+ When a taxi driver refuses a request, her taxi is moved in the last position
+ of the queue corresponding to her current location.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+[G7] Taxi drivers receive requests only when they are free
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: 
+\begin_inset Formula $\textrm{Ø}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R1]
+\series default
+ Every taxi call to the central system is immediately forwarded to the queue
+ associated to the zone containing the required meeting point.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R10]
+\series default
+ When the state of a taxi driver turns to busy, her taxi is deleted from
+ the queue corresponding to her current location.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R12]
+\series default
+ When a taxi driver logs out from the central system, she is set to busy.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R16]
+\series default
+ A taxi driver, whose application has not responded to the system solicitations
+ for more than two minutes, is automatically logged out from the central
+ system.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+[G8] Passengers can reserve a taxi only for a time at least two hours from
+ the reservation
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: 
+\begin_inset Formula $\textrm{Ø.}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R13]
+\series default
+ Each reservation request is accepted only if the submit time is at least
+ two hours before the meeting time.
+\end_layout
+
+\begin_layout Subsubsection
+[G9] External developers have the possibility to use the taxi call and reservati
+on function of MyTaxiService in their applications
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: 
+\begin_inset Formula $\textrm{Ø.}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R14]
+\series default
+ The system provides public APIs for the call and reservation functions.
+\end_layout
+
+\begin_layout Subsubsection
+[G10] Each reserved taxi arrives at the meeting point at most two minutes
+ late
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D1,D2,D3,D6
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R2]
+\series default
+ For each reservation, a request is sent to the queue associated to the
+ zone containing the required meeting point ten minutes before the meeting
+ time.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R3]
+\series default
+ A request from the central system to taxi drivers always includes the meeting
+ point, the passenger's name and her phone number.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+[G11] Taxi drivers receive only and all the requests relative to the taxi
+ they are currently driving
+\end_layout
+
+\begin_layout Standard
+Required domain assumptions: D10,D11
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Functional requirements:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R17]
+\series default
+ Every time a driver logs in, the application stores an association between
+ her and the taxi she has specified.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R18]
+\series default
+ Every time a driver logs out, the association with her taxi is deleted.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+[R19]
+\series default
+ The application rejects all driver login attempts in which the specified
+ taxi is already associated to another driver.
+ 
+\end_layout
+
+\begin_layout Subsection
+Nonfunctional requirements
+\end_layout
+
+\begin_layout Subsubsection
+Performance
+\end_layout
+
+\begin_layout Standard
+Taken into account that all exchanges between the central system and the
+ terminals are very short, the following performance requirements must be
+ satisfied:
+\end_layout
+
+\begin_layout Itemize
+The time occurring between the reception of a user request and the forwarding
+ to the queue (for a taxi call) or its memorization (for a reservation)
+ must be less than one second for at least 90% of the requests;
+\end_layout
+
+\begin_layout Itemize
+The system must be able to handle at least 1000 requests/responses at the
+ same time.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Availability
+\end_layout
+
+\begin_layout Standard
+The system must be available 99.99% of the time (downtime should be about
+ 10 seconds per day).
+\end_layout
+
+\begin_layout Subsubsection
+Security
+\end_layout
+
+\begin_layout Standard
+The system requires all users to have a password of at least eight alphanumeric
+ characters.
+ Only the passwords’ hashes are stored in the system.
+\begin_inset Newline newline
+\end_inset
+
+Communications are encrypted (e.g.
+ using https) to guarantee the privacy of the users.
+\end_layout
+
+\begin_layout Subsubsection
+Portability
+\end_layout
+
+\begin_layout Standard
+The central system must be implemented with a non-host-dependent language.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The mobile applications must be available on the main mobile operating systems:
+ Android, Windows Phone and iOS.
+ 
+\end_layout
+
+\begin_layout Subsection
+Scenarios
+\end_layout
+
+\begin_layout Subsubsection
+Taxi call
+\end_layout
+
+\begin_layout Standard
+Mr.
+ Goodman, a lawyer, is having his car washed at A1A Carwash, when he receives
+ a call from a client who has just been arrested.
+ Goodman must reach the central police station as soon as possible, but
+ his car will not be available for at least 20 minutes and there are no
+ bus stops nearby.
+ He, therefore, decides to call a taxi.
+\begin_inset Newline newline
+\end_inset
+
+Goodman has the MyTaxiService app already installed on his mobile and has
+ already gone through registration, so he’s automatically logged in as he
+ opens the app.
+ Taking his privacy in high regard, the lawyer has never given the app the
+ authorization to use his position (as retrieved by GPS), so he manually
+ selects the meeting point.
+\begin_inset Newline newline
+\end_inset
+
+Not far from there, in a parking lot, a taxi driver is waiting for calls.
+ He has been waiting for quite a lot, so he is happy to hear the distinctive
+ MyTaxiService notification coming from his mobile.
+ After reading the place of the meeting and the name of the customer, he
+ accepts the request and immediately starts driving.
+ One minute after sending the request, Goodman receives the waiting time
+ (5 minutes) and the code of the incoming taxi, so he approaches the roadside
+ and waits impatiently.
+\begin_inset Newline newline
+\end_inset
+
+After only three minutes, the lawyer spots a taxi and starts waiving.
+ The taxi driver pulls over, rolls down the window and asks “Saul Goodman?”.
+\end_layout
+
+\begin_layout Subsubsection
+Taxi reservation
+\end_layout
+
+\begin_layout Standard
+Mr.
+ White has been invited to an important conference, in which, as a guest
+ of honor, he will give a lecture about crystallography”.
+ The conference will be held on 25th December at Politecnico di Milano.
+\begin_inset Newline newline
+\end_inset
+
+The day before, Mr.
+ White decides to reserve a taxi for the conference.
+ He starts the web application on his computer, he logs in correctly (by
+ entering his phone number and his password) and he clicks on “Reservation”.
+ He enters the precise date and hour (25th December at 14.00), the meeting
+ point (Piazza Duomo) and the destination (Piazza Piola).
+ After submitting his data, he receives a confirmation message by the applicatio
+n.
+ The next day at 13.50, Jesse, a taxi driver who is waiting in his cab near
+ Piazza Duomo, receives the request on his phone and accepts it.
+\begin_inset Newline newline
+\end_inset
+
+At the same time, Mr.
+ White, who is wandering in Piazza Duomo, receives a notification on his
+ phone, containing the code of the incoming taxi and the waiting time (5
+ minutes).
+ After 4 minutes, the taxi arrives and brings him to the specified location.
+\end_layout
+
+\begin_layout Subsubsection
+Taxi driver routine
+\end_layout
+
+\begin_layout Standard
+Achille, a taxi driver, has just completed his last run to Politecnico di
+ Milano.
+ After stopping a couple minutes for a coffee, he decides to go back to
+ work, thus signaling that he is free to the central system.
+ He starts his mobile application and clicks “I’m Free!”.
+ The application confirms his request and shows him that he is already the
+ first in the queue for that zone.
+ After a few minutes, he receives a request from Piazza Piola through the
+ application.
+ He decides to accept it, thus he clicks on “Accept request”.
+ He immediately goes to the meeting point, but no one shows up.
+ After waiting for the passenger for about 5 minutes, he decides to set
+ his state again to free.
+\end_layout
+
+\begin_layout Subsubsection
+External developer point of view
+\end_layout
+
+\begin_layout Standard
+Bruce K.
+ is a very lazy programmer with an ambitious idea.
+ He wants to develop the ultimate mobile application for public transport
+ in his city.
+ The app, called BringMeThere, would work as following: the user selects
+ a destination and a search profile, such as “in a hurry” or “short of money”.
+ By using GPS and all available information about the current state of means
+ of transport, the app provides the best solution and a series of alternatives,
+ with explanatory details, e.g.
+ “Walking will take you just five minutes, but if you are tired you should
+ wait for the tram coming in 4 minutes, that will take 2 minutes to reach
+ your destination, for a total of 6 minutes”.
+\begin_inset Newline newline
+\end_inset
+
+Taking a taxi is also an option, but actually calling one by phone, or even
+ switching to another app, could be annoying for a lazy user (it would certainly
+ be for Bruce), so the programmer decides to integrate the calling process
+ in his app.
+\begin_inset Newline newline
+\end_inset
+
+With very little effort, Bruce uses a MyTaxiService API to implement this
+ functionality.
+ A user of BringMeThere will just have to press a button to have a taxi
+ sent to his current location.
+\begin_inset Newline newline
+\end_inset
+
+Bruce is already figuring all the money he will get by filling his app with
+ advertisements.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Registration
+\end_layout
+
+\begin_layout Standard
+Dario Lampa is on a plane toward Milan.
+ Knowing that he will probably need a taxi, he decides to search for some
+ services on Google.
+ Of course, the first result is MyTaxiService.
+\begin_inset Newline newline
+\end_inset
+
+He connects to the homepage and, considering it is heavily user-friendly,
+ he decides to give it a try, thus clicking "Register".
+ He enters his cell phone number, a password, his name and surname, and
+ submits the data.
+ The application asks him to enter the validation code, which in turn has
+ been sent to his phone.
+ Unfortunately, his phone is currently in airplane-mode, and it will be
+ so until the end of the flight.
+ After a few minutes, the page shows an error message, saying that his request
+ has been refused.
+\begin_inset Newline newline
+\end_inset
+
+Though this little inconvenient really disappointed Dario, he decides to
+ give MyTaxiService a second chance.
+ After he has landed, he repeats the registration procedure.
+ This time, the validation code is successfully received.
+ After he enters it, the registration is finally complete.
+ Lampa Dario is now a registered user of MyTaxiService!
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case diagram
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Use Case Diagram1.png
+	scale 50
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 1
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+Register
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Guest
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+The guest clicks “Register” in the first screen of the passenger interface.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The guest enters the required data and clicks submit.
+\end_layout
+
+\begin_layout Enumerate
+The application sends a verification code via SMS to the specified cell
+ phone number and asks the user to enter that code.
+\end_layout
+
+\begin_layout Enumerate
+The guest receive and enters the code.
+\end_layout
+
+\begin_layout Enumerate
+The application store the registration data into the database.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+The registration is successfully stored in the database.
+ From now on the guest is considered a user and she can login into the applicati
+on.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Enumerate
+Some registration data is wrong or missing: the application displays an
+ error and goes back to data request.
+\end_layout
+
+\begin_layout Enumerate
+The validation code is wrong or missing: the application displays an error
+ and goes back to code request.
+\end_layout
+
+\begin_layout Enumerate
+The validation code is not entered within the allowed time: the application
+ closes the registration request and deletes all temporary data.
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+The validation code must be entered within 5 minutes after it has been sent.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram2.png
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 2
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+ReserveTaxi
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Passenger
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+The passenger clicks “Reserve a taxi” in the main screen of the passenger
+ interface.
+ The passenger is already logged-in (otherwise he won’t be able to see the
+ screen).
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The passenger enters the required data in the reservation screen: she selects
+ a meeting point and a destination, and she types a meeting time.
+\end_layout
+
+\begin_layout Enumerate
+The passenger clicks “Reserve now”.
+\end_layout
+
+\begin_layout Enumerate
+The system stores the reservation into the database and sends a confirmation
+ message.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+The reservation is successfully stored into the database and the passenger
+ receives a confirmation.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Enumerate
+The meeting time is less than two hours from the reservation time: the applicati
+on displays an error and shows again the reservation screen.
+\end_layout
+
+\begin_layout Enumerate
+Meeting point and destination are distant less than the minimum distance:
+ the application displays an error and shows again the reservation screen.
+\end_layout
+
+\begin_layout Enumerate
+The meeting point is not valid: the application displays an error and shows
+ again the reservation screen.
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+The minimum distance between meeting point and the destination is 100 meters.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram3.png
+	scale 90
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 3
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+LoginTaxi
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Taxi driver
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+The taxi driver clicks “Sign in” in the first screen of the driver interface.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The taxi driver enters her password and her current taxi ID.
+\end_layout
+
+\begin_layout Enumerate
+The taxi driver clicks “Sign in”.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+The taxi driver is successfully logged-in.
+ An association between the driver and her taxi ID is stored in the database
+ (meaning that that driver is currently driving that taxi).
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Enumerate
+The entered password is wrong (i.e., it is different from the one associated
+ to the phone number of the driver): the application displays an error and
+ shows again the login screen.
+\end_layout
+
+\begin_layout Enumerate
+The entered taxi ID does not exist: the application displays an error and
+ shows again the login screen.
+\end_layout
+
+\begin_layout Enumerate
+The entered taxi ID corresponds to a taxi that is currently being driven
+ by another driver: the application displays an error and shows again the
+ login screen.
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram4.png
+	scale 90
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 4
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+ReceiveRequest
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Taxi driver
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+The queue forwards a request to a taxi driver.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The taxi driver receives and checks the incoming request.
+\end_layout
+
+\begin_layout Enumerate
+The taxi driver either accepts or refuses the request.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+The queue receives the driver decision on the request.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Enumerate
+A response from the driver does not arrive within the allowed time: the
+ response is considered a refusal and the use case is terminated.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+The allowed time for a driver to give a response on the request is one minute.
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram5.png
+	scale 90
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 5
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+AllocateTaxi
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Taxi driver, passenger
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+Two possible entry conditions:
+\end_layout
+
+\begin_layout Enumerate
+A taxi call has been received.
+\end_layout
+
+\begin_layout Enumerate
+One of the stored reservations has meeting time ten minutes from now.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The system generates a request and sends it to the corresponding queue.
+\end_layout
+
+\begin_layout Enumerate
+The queue forwards it to the first taxi in the queue.
+\end_layout
+
+\begin_layout Enumerate
+The queue receives a response from the taxi driver.
+\end_layout
+
+\begin_layout Enumerate
+If the response is an acceptance, the system computes the waiting time and
+ sends a notification to the passenger (with waiting time and taxi ID).
+ In this case, the taxi driver is set to busy and removed from the queue.
+ Otherwise, the taxi is moved in the last position of the queue and point
+ 2 is repeated.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+The passenger receives a notification with waiting time and taxi ID.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Graphics
+	filename Allocate Taxi.png
+	scale 70
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 6
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+Login
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Passenger
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+A non-logged passenger chooses “Sign In”.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The application shows the login screen.
+\end_layout
+
+\begin_layout Enumerate
+The passenger correctly inserts credentials.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+The application shows the main screen.
+ The passenger is now logged.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Standard
+If credentials are incorrect (inexistent phone number or wrong password),
+ the application shows an error message on the login page.
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename login.png
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 7
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+Call Taxi
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Passenger
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+Logged passenger chooses “Taxi Call” on main screen.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The application shows the taxi call screen.
+\end_layout
+
+\begin_layout Enumerate
+The passenger selects the meeting point.
+\end_layout
+
+\begin_layout Enumerate
+The passenger presses “Call Now”.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+The passenger receives a confirmation, saying that her request is being
+ processed.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Standard
+If the meeting point is not valid (there is no zone containing the point),
+ an error is showed and the applications returns to the main screen.
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename call taxi.png
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 8
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+Select Meeting Point
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Passenger
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+This is a sub-use-case of Call Taxi and Reservation.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The passenger selects the meeting point either automatically (through GPS,
+ only for mobile application) or manually (through Google Maps).
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+Meeting point is selected and ready to be communicated to the system.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Standard
+If GPS is not available (not present, turned off, not authorized) the passenger
+ can only select the meeting point manually.
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Graphics
+	filename select meeting point.png
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 9
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+Set Free
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Taxi Driver
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+Taxi driver is logged, busy and wants to switch to free.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The taxi driver press “I’m Free”.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+Taxi is added to the proper queue, “Free” is displayed.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Standard
+Whenever the connection with the central system is lost, the Taxi Driver
+ is considered busy by both the central system and the mobile application.
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Graphics
+	filename set free.png
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Use case 10
+\end_layout
+
+\begin_layout Subsubsection
+Name
+\end_layout
+
+\begin_layout Standard
+Set Busy
+\end_layout
+
+\begin_layout Subsubsection
+Actors
+\end_layout
+
+\begin_layout Standard
+Taxi Driver
+\end_layout
+
+\begin_layout Subsubsection
+Entry condition
+\end_layout
+
+\begin_layout Standard
+Taxi Driver is logged, free and wants to switch to busy.
+\end_layout
+
+\begin_layout Subsubsection
+Flow of events
+\end_layout
+
+\begin_layout Enumerate
+The taxi driver press “I’m Busy”.
+\end_layout
+
+\begin_layout Subsubsection
+Exit condition
+\end_layout
+
+\begin_layout Standard
+Taxi is removed from queue, “Busy” is displayed.
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Subsubsection
+Special requirements
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Graphics
+	filename set busy.png
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Class diagram
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Class Diagram1.png
+	scale 70
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Appendix
+\end_layout
+
+\begin_layout Subsection
+Alloy
+\end_layout
+
+\begin_layout Subsubsection
+Signatures
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY (1)/ALLOY/Code0.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY (1)/ALLOY/Code1.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Cardinality Facts
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/Code2.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Facts
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/Code3.png
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Cardinality Assertions
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/Code4.png
+	scale 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Assertions
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/Code5.png
+	scale 85
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Assertion checks
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY (1)/ALLOY/checked.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Run
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/Code6r.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Generated worlds
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/runCallScenario.png
+	scale 80
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/runRes2.png
+	scale 90
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename C:/Users/Andrea/Downloads/ALLOY/runShow2.png
+	scale 80
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Used software
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Microsoft Word
+\series default
+ 
+\series bold
+and
+\series default
+ 
+\series bold
+LyX
+\series default
+: document redaction;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Visual Paradigm
+\series default
+: UML modeling;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Alloy
+\series default
+: system modeling and checking;
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Moqups
+\series default
+: mockup creation;
+\end_layout
+
+\begin_layout Subsection
+Spent Hours
+\end_layout
+
+\begin_layout Itemize
+Andrea Tirinzoni: ~30h
+\end_layout
+
+\begin_layout Itemize
+Matteo Papini: ~30h
+\end_layout
+
+\end_body
+\end_document
