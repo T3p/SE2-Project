@@ -207,7 +207,16 @@ The system manages the requests in an efficient way:
 \begin_inset Newline newline
 \end_inset
 
-The city is divided into zones having an area of approximately 2 km2.
+The city is divided into zones having an area of approximately 2 km
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+.
  Each zone is associated to a queue containing all the taxi drivers currently
  in that zone.
  The position of the taxis is provided by the drivers’ app through GPS.
@@ -310,7 +319,16 @@ Meeting point
 \series bold
 Zone
 \series default
-: an area of the city of approximately 2 km2;
+: an area of the city of approximately 2 km
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+;
 \end_layout
 
 \begin_layout Itemize
@@ -677,7 +695,7 @@ Part three provides both functional and nonfunctional requirements and a
 \end_layout
 
 \begin_layout Itemize
-Appendix A provides an Alloy model of the core part of the system.
+Appendix provides an Alloy model of the core part of the system.
 \end_layout
 
 \begin_layout Section
@@ -1579,7 +1597,7 @@ Availability
 \end_layout
 
 \begin_layout Standard
-The system must be available 99.99% of the time (downtime should be about
+The system must be available 99.99% of the time (downtime should be at most
  10 seconds per day).
 \end_layout
 
@@ -1791,7 +1809,7 @@ Use case diagram
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Use Case Diagram1.png
+	filename C:/Users/Andrea/Downloads/err/err.png
 	scale 50
 	rotateAngle 90
 
