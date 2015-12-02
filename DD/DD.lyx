@@ -1,0 +1,2903 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "DD"
+\pdf_author "Andrea Tirinzoni - Matteo Papini"
+\pdf_subject "MyTaxiService"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{./titleDD.tex}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+This is the Design Document for the MyTaxiService system.
+ The aim of this document is to provide a detailed description of the system’s
+ architecture, its main components and their interaction.
+ It is mainly addressed to developers and testers.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+The aim of this project is to develop a system to improve the taxi service
+ of Milan, accessible both via web and mobile applications.
+ For further details see RASD, section 1.2.
+\end_layout
+
+\begin_layout Subsection
+Definitions, Acronyms and Abbreviations
+\end_layout
+
+\begin_layout Subsubsection
+Definitions
+\end_layout
+
+\begin_layout Standard
+See RASD.
+\end_layout
+
+\begin_layout Subsubsection
+Acronyms
+\end_layout
+
+\begin_layout Itemize
+DD: Design Document;
+\end_layout
+
+\begin_layout Itemize
+RASD: Requirement Analysis and Specification Document;
+\end_layout
+
+\begin_layout Itemize
+Java EE: Java Enterprise Edition;
+\end_layout
+
+\begin_layout Itemize
+HTTP: HyperText Transfer Protocol;
+\end_layout
+
+\begin_layout Itemize
+EJB: Enterprise Java Bean;
+\end_layout
+
+\begin_layout Itemize
+JPA: Java Persistence API;
+\end_layout
+
+\begin_layout Itemize
+JAX-RS: Java API for RESTful Services;
+\end_layout
+
+\begin_layout Itemize
+P2P: peer-to-peer;
+\end_layout
+
+\begin_layout Itemize
+MVC: Model-View-Controller;
+\end_layout
+
+\begin_layout Itemize
+API: Application Programming Interface 
+\end_layout
+
+\begin_layout Subsubsection
+Abbreviations
+\end_layout
+
+\begin_layout Itemize
+app: application
+\end_layout
+
+\begin_layout Subsection
+Reference Documents
+\end_layout
+
+\begin_layout Itemize
+RASD.pdf
+\end_layout
+
+\begin_layout Subsection
+Document Structure
+\end_layout
+
+\begin_layout Standard
+We provide here the overall structure of this document:
+\end_layout
+
+\begin_layout Itemize
+In section 1 the problem is introduced;
+\end_layout
+
+\begin_layout Itemize
+In section 2 the architecture of the final system is proposed, focusing
+ on the main components and their interaction;
+\end_layout
+
+\begin_layout Itemize
+In section 3 the main algorithms used by the application are presented;
+\end_layout
+
+\begin_layout Itemize
+In section 4 the user interfaces are detailed furtherly;
+\end_layout
+
+\begin_layout Itemize
+In section 5 the requirements defined in the RASD document are mapped to
+ components of the proposed architecture.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Architectural Design
+\end_layout
+
+\begin_layout Subsection
+Overview
+\end_layout
+
+\begin_layout Standard
+This part of the document provides a detailed description of the system
+ architecture.
+ Section 2.2 illustrates the components at a high level, both from a physical
+ and a logical perspective.
+ Sections 2.3 and 2.4 furtherly detail the components, while section 2.5 focuses
+ on their interaction.
+ Section 2.6 specifies the interfaces provided by each component.
+ Sections 2.7 and 2.8 explain and justify design choices.
+\end_layout
+
+\begin_layout Subsection
+High level components and their interaction
+\end_layout
+
+\begin_layout Standard
+The architecture contemplates a central system, which provides all the required
+ services and manages data, and three types of clients: - Web application
+ for passengers, entirely accessible via a web browser; - Mobile app for
+ passengers, a hybrid app accessing the same contents as the web application;
+ - Mobile app for drivers, a native application.
+ The system will be implemented using Java EE technologies.
+\end_layout
+
+\begin_layout Subsubsection
+Hardware architecture overview
+\end_layout
+
+\begin_layout Standard
+Clients access the services through the Internet.
+ Client side devices are:
+\end_layout
+
+\begin_layout Itemize
+Mobile phones running a standard operating system (Android, iOS or Windows
+ Phone), on which the mobile applications are installed;
+\end_layout
+
+\begin_layout Itemize
+Any device running a web browser, from which the web application is accessible.
+\end_layout
+
+\begin_layout Standard
+Server side devices are:
+\end_layout
+
+\begin_layout Itemize
+Router: connects the central system to the internet;
+\end_layout
+
+\begin_layout Itemize
+Firewall: provides protection to the back-end system;
+\end_layout
+
+\begin_layout Itemize
+Application server: a machine providing all the functionalities of a web
+ server and hosting the business logic.
+ It handles all application logic: client requests, queue management, taxi
+ allocation...
+ It communicates both with clients and with the Database Server.
+ Considering the nonfunctional requirements specified in the RASD document,
+ in particular availability and performance, a single machine could not
+ be enough to properly manage the whole process.
+ Thus, a cluster of two dedicated machines will host replicated instances
+ of the server;
+\end_layout
+
+\begin_layout Itemize
+Load balancer: redirect incoming requests to the machines in the cluster,
+ in order to maximize performances; 
+\end_layout
+
+\begin_layout Itemize
+Database Server: the DBMS storing the system's data.
+\end_layout
+
+\begin_layout Standard
+A graphical overview of the hardware architecture is provided on the next
+ page.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mytaxiservice.png
+	scale 60
+	rotateAngle 270
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Software architecture overview
+\end_layout
+
+\begin_layout Standard
+The central system is 3-tiered.
+\begin_inset Newline newline
+\end_inset
+
+The server-side tiers are:
+\end_layout
+
+\begin_layout Itemize
+Web tier: receives HTTP requests from the web application and the passenger
+ mobile app, processes them by invoking services on the business tier and
+ returns HTTP responses to the client;
+\end_layout
+
+\begin_layout Itemize
+Business tier: includes several components providing the system functionalities,
+ to be invoked both by the web tier and, remotely, by the driver mobile
+ app.
+ Some of these components are accessible as web services, so that external
+ developers may use them in their application.
+ The components access the database to store and retrieve data.
+ A detailed description of this tier's components is provided in section
+ 2.3;
+\end_layout
+
+\begin_layout Itemize
+Data tier: receives query requests from the business tier and processes
+ them.
+\end_layout
+
+\begin_layout Standard
+The client tier includes:
+\end_layout
+
+\begin_layout Itemize
+Web application: a set of dynamic web pages accessed through a browser,
+ which communicates through HTTP with the web tier;
+\end_layout
+
+\begin_layout Itemize
+Passenger app: a hybrid mobile application (that is, an application directly
+ displaying web contents), which communicates through HTTP with the web
+ tier.
+ Considering that the web application must also communicate using HTTP with
+ the web tier and its functionalities are the same of those provided by
+ the mobile one, a hybrid app has been chosen instead of a native.
+ This choice will also simplify the deployment on different mobile operating
+ systems;
+\end_layout
+
+\begin_layout Itemize
+Taxi driver app: a native mobile application, which directly communicates
+ with the business tier components according to a peer-to-peer paradigm
+ (specified in section 2.3 and 2.7).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+A diagram showing the tiers involved is provided below:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename architecture.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+The software layers are distributed between the specified tiers according
+ to the distributed presentation paradigm:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename layers.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The application server, indeed, assembles the web pages, i.e.
+ the client's view.
+ Thus, a part of the GUI is handled by the application server.
+ Note that this concerns only the web application and the passenger app.
+ The driver app takes care of all the GUI layer by itself, thus the paradigm
+ is, in this case, remote presentation.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Implementation technologies
+\end_layout
+
+\begin_layout Standard
+As already mentioned, the system will be implemented with Java EE.
+ More precisely, the following technologies will be used:
+\end_layout
+
+\begin_layout Itemize
+Application Server: Glassfish 4.1.1;
+\end_layout
+
+\begin_layout Itemize
+Database Server: MySQL;
+\end_layout
+
+\begin_layout Itemize
+Web tier: JavaServer Faces;
+\end_layout
+
+\begin_layout Itemize
+Business tier: EJB (for the components), JAX-RS (for the web services),
+ JPA (for the database communication).
+\end_layout
+
+\begin_layout Subsection
+Component view
+\end_layout
+
+\begin_layout Standard
+The business tier includes the following components:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Login manager
+\series default
+: handles all login requests.
+ It distinguishes passenger logins from driver logins.
+ The driver login function can be invoked remotely.
+ The component checks the validity of user data, sets the new state accordingly
+ and returns the result.
+ It also provides a function to check whether a given user is already logged
+ in.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Registration manager
+\series default
+: handles registrations of new passengers to the system.
+ It can be divided into two sub-components.
+ The first one generates validation codes and sends them (via SMS) through
+ an external web service and checks the validity of submitted codes.
+ The second one checks the validity of user data in a registration request,
+ creates new users and returns the result to the invoker (the web tier).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Logout manager
+\series default
+: handles the automatic logout (due to timeout) of taxi drivers.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi call manager
+\series default
+: handles all taxi calls.
+ The component checks the validity of input data and forwards valid requests
+ to the Taxi allocation manager.
+ This component is also invoked by a public web service, in order to provide
+ the taxi call function to external developers.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi reservation manager
+\series default
+: handles all taxi reservations.
+ The component checks the validity of input data and stores valid requests
+ into the database.
+ This component is also invoked by a public web service, in order to provide
+ the taxi reservation function to external developers.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Taxi allocation manager
+\series default
+: processes call requests and periodically checks the database for reservations
+ whose meeting time is in ten minutes.
+ In both cases, forwards the request to the corresponding queue (in the
+ queue manager).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Queue manager
+\series default
+: manages all the queues.
+ This component handles the insertion of a driver in a queue (after he sets
+ his state to FREE) and his removal (after his state is set to BUSY).
+ Moreover, it processes calls forwarding to drivers, according to the algorithm
+ mentioned in the RASD document (see section 3 for more details).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Communication manager
+\series default
+: handles the message exchanges with the taxi drivers.
+ The component receives messages and sends responses.
+ It also sends asynchronous requests to the drivers.
+ Thus, the overall architecture of this sub-system is p2p (see section 2.7
+ for further details).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+GPS manager
+\series default
+: manages the communication with all taxi GPSs.
+\end_layout
+
+\begin_layout Standard
+A component diagram is provided below.
+ For a detailed description of the interfaces between components, see section
+ 2.6.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Component Diagram1.png
+	scale 70
+	rotateAngle 270
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Deployment view
+\end_layout
+
+\begin_layout Standard
+A deployment diagram is provided below.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename MyTaxiServiceDepl.png
+	scale 50
+	rotateAngle 270
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Runtime view
+\end_layout
+
+\begin_layout Subsubsection
+Registration
+\end_layout
+
+\begin_layout Standard
+The following diagram shows the interaction between components in an attempt
+ of registration.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram1.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Login
+\end_layout
+
+\begin_layout Standard
+The following diagram shows the interaction between components in an attempt
+ of login performed by a taxi driver.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename LoginDriver.png
+	scale 70
+	rotateAngle 270
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Taxi Call
+\end_layout
+
+\begin_layout Standard
+The following diagram shows the interaction between components in a taxi
+ call.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename TaxiCall.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Taxi Reservation
+\end_layout
+
+\begin_layout Standard
+The following diagram shows the interaction between components in a taxi
+ reservation.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram2.png
+	scale 65
+	rotateAngle 270
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Taxi Allocation
+\end_layout
+
+\begin_layout Standard
+The following diagram shows the interaction between components in a taxi
+ allocation.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Allocate Taxi.png
+	scale 70
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Taxi call through the web service
+\end_layout
+
+\begin_layout Standard
+The following diagram shows the interaction between components when a taxi
+ call is performed through the web service.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram3.png
+	scale 70
+	rotateAngle 270
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Automatic Logout
+\end_layout
+
+\begin_layout Standard
+The following diagram shows how the Logout Manager performs the automatic
+ logout.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Sequence Diagram4.png
+	scale 65
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Component interfaces
+\end_layout
+
+\begin_layout Subsubsection*
+Login Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Login
+\bar default
+ 
+\end_layout
+
+\begin_layout Itemize
+loginPassenger(): performs passenger login.
+ INPUT: cell phone number and password.
+ OUTPUT: the result of the operation (either success or error).
+ 
+\end_layout
+
+\begin_layout Itemize
+loginDriver(): performs driver login.
+ INPUT: cell phone number, taxi ID, password.
+ OUTPUT: the result of the operation (either success or error).
+ 
+\end_layout
+
+\begin_layout Itemize
+isLoggedIn(): checks whether a given user is already logged in.
+ INPUT: cell phone number.
+ OUTPUT: either true (the user is already logged in) or false (vice-versa).
+\end_layout
+
+\begin_layout Subsubsection*
+Registration Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Registration
+\bar default
+ 
+\end_layout
+
+\begin_layout Itemize
+register(): performs passenger registration.
+ INPUT: cell phone number, password, name, surname.
+ OUTPUT: the result of the operation (either success or error).
+ 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Validation
+\bar default
+ 
+\end_layout
+
+\begin_layout Itemize
+generateCode(): generates a random validation code.
+ INPUT: none.
+ OUTPUT: the generated code.
+\end_layout
+
+\begin_layout Itemize
+checkCode(): checks whether the input code corresponds to the one generated
+ for the given passenger.
+ INPUT: cell phone number, code.
+ OUTPUT: either true (the code is valid) or false (vice-versa).
+\end_layout
+
+\begin_layout Subsubsection*
+TaxiCall Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+TaxiCall 
+\end_layout
+
+\begin_layout Itemize
+call(): performs a taxi call operation.
+ INPUT: cell phone number, meeting point.
+ OUTPUT: the result of the operation (either success or error).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+TaxiReservation Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+TaxiReservation
+\end_layout
+
+\begin_layout Itemize
+reserve(): performs a taxi reservation.
+ INPUT: cell phone number, meeting point, meeting time, destination.
+ OUTPUT: the result of the operation (either success or error).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+TaxiAllocation Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+TaxiAllocation
+\end_layout
+
+\begin_layout Itemize
+allocate(): forwards a request to the corresponding queue.
+ INPUT: request.
+ OUTPUT: none.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Queue Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+QueueModification
+\end_layout
+
+\begin_layout Itemize
+addDriver(): adds the given driver to the specified queue.
+ INPUT: cell phone number, queue.
+ OUTPUT: the result of the operation (either success or error).
+\end_layout
+
+\begin_layout Itemize
+removeDriver(): removes the given driver from the specified queue.
+ INPUT: cell phone number, queue.
+ OUTPUT: the result of the operation (either success or error).
+ 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+RequestForwarding
+\end_layout
+
+\begin_layout Itemize
+forward(): forwards the given request to the drivers in the given queue
+ according to the already mentioned algorithm.
+ INPUT: request, queue.
+ OUTPUT: none.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+GPS Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Localization
+\bar default
+ 
+\end_layout
+
+\begin_layout Itemize
+localize(): localizes a taxi given its driver.
+ INPUT: cell phone number.
+ OUTPUT: either the taxi location or an error (if the taxi driver is currently
+ not driving).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Communication Manager 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+MessageReception
+\bar default
+ 
+\end_layout
+
+\begin_layout Itemize
+setFree(): invoked remotely by drivers.
+ Forwards the request to the corresponding queue (computed through GPS Manager).
+ INPUT: cell phone number.
+ OUTPUT: the result of the operation (either success or error).
+\end_layout
+
+\begin_layout Itemize
+setBusy(): invoked remotely by drivers.
+ Forwards the request to the corresponding queue (computed through GPS Manager).
+ INPUT: cell phone number.
+ OUTPUT: the result of the operation (either success or error).
+\end_layout
+
+\begin_layout Itemize
+login(): invoked remotely by drivers.
+ Forwards the request to the Login Manager.
+ INPUT: cell phone number, password.
+ OUTPUT: the result of the operation (either success or error).
+ MessageDelivery
+\end_layout
+
+\begin_layout Itemize
+sendRequest(): sends the given requests to the specified drivers and waits
+ for a response.
+ INPUT: cell phone number, request.
+ OUTPUT: the driver's answer.
+\end_layout
+
+\begin_layout Itemize
+sendQueuePosition(): sends the current queue position to the given driver.
+ INPUT: cell phone number, queue position.
+ OUTPUT: none.
+\end_layout
+
+\begin_layout Itemize
+checkStatus(): checks whether the given driver is still connected.
+ INPUT: cell phone number.
+ OUTPUT: either true (the driver replied) or false (no response was received).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Public Web Services 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+WebService
+\end_layout
+
+\begin_layout Itemize
+callService(): processes a taxi call request from external systems.
+ INPUT: the developer's cell phone number, the caller's cell phone number,
+ the meeting point.
+ OUTPUT: the result of the operation (either success or error).
+\end_layout
+
+\begin_layout Itemize
+reserveService(): processes a taxi reservation request from external systems.
+ INPUT: the developer's cell phone number, the caller's cell phone number,
+ the meeting point, the meeting time, the destination.
+ OUTPUT: the result of the operation (either success or error).
+ 
+\end_layout
+
+\begin_layout Subsection
+Selected architectural styles and patterns
+\end_layout
+
+\begin_layout Standard
+Considering that different types of client need different communication
+ paradigms, the system is designed according to two different architectural
+ styles:
+\end_layout
+
+\begin_layout Itemize
+Client-Server: it is used for the communication with passenger clients (i.e.,
+ the web application and the hybrid mobile app).
+ Clients make HTTP requests to the web tier.
+ The latter processes them, invokes components of the business tier and
+ finally produces responses.
+ In this case, the server never opens a connection with the client by itself.
+ Thus, the communication paradigm is a simple request-response.
+\end_layout
+
+\begin_layout Itemize
+Peer-to-peer: it is used for the communication with driver apps.
+ In this case, both the server and the client can open a connection with
+ each other.
+ The server sends asynchronous messages to the clients (e.g.
+ taxi requests) and, vice-versa, the client sends asynchronous messages
+ to the server(e.g.
+ set FREE or set BUSY).
+ Thus, no server role is defined and the overall style is p2p (even though
+ the clients do not communicate with each other).
+ 
+\end_layout
+
+\begin_layout Standard
+The following architectural patterns have been considered:
+\end_layout
+
+\begin_layout Itemize
+MVC: the client-server part of the system is designed according to the MVC
+ pattern.
+ JavaServer Faces, indeed, already implements this pattern.
+ The view part is constituted by a set of facelets, whereas the model part
+ is constituted by the java beans.
+ The mediation between this two parts is managed by the faces servlet, which
+ represents the controller of the MVC pattern.
+ A better explanatory picture is provided below.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename mvc (1).png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Publisher-Subscriber: the p2p part design is inspired by the publisher-subscribe
+r pattern.
+ In fact, when a taxi driver sets his state to FREE, he is subscribing to
+ the queue of his current zone.
+ When the system allocates a taxi, it sends the request to the drivers in
+ the corresponding queue.
+ However, the system forwards the request to one taxi at a time and in a
+ precise order, according to the already mentioned algorithm.
+ Thus, this is just a variant of publisher-subscriber, in which the messages
+ are not broadcasted and the system must know the identity of each subscriber.
+ A diagram illustrating this pattern is provided below.
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename pubsub.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Other design decisions
+\end_layout
+
+\begin_layout Standard
+The system provides APIs to external developers in the form of public web
+ services.
+ This choice has been made for several reasons: 
+\end_layout
+
+\begin_layout Itemize
+accessibility: web services are platform independent and they can be accessed
+ by using standard protocols (HTTP in this case); 
+\end_layout
+
+\begin_layout Itemize
+extensibility: it is easy to add new web services that call the business
+ tier functions; 
+\end_layout
+
+\begin_layout Itemize
+compatibility: the Glassfish application server directly supports web services.
+ 
+\end_layout
+
+\begin_layout Itemize
+security: external developers must be registered user (as normal passengers)
+ and the responsibility of every request is on them.
+ Thus, security is guaranteed.
+ 
+\end_layout
+
+\begin_layout Section
+Algorithm Design
+\end_layout
+
+\begin_layout Standard
+We provide in this section a description of the most relevant algorithms
+ used by our application.
+ 
+\end_layout
+
+\begin_layout Subsection
+Queue management in taxi allocation
+\end_layout
+
+\begin_layout Standard
+We provide here a detailed description of the already mentioned algorithm
+ for the allocation of a taxi.
+ Let us first define the following classes: 
+\end_layout
+
+\begin_layout Itemize
+Request: represents a request to a driver;
+\end_layout
+
+\begin_layout Itemize
+Queue: represents a queue of Taxi.
+ It provides the functions: enqueue(Taxi), which adds a Taxi object to the
+ last position in the queue, dequeue(), which removes the first Taxi in
+ the queue and returns it;
+\end_layout
+
+\begin_layout Itemize
+Taxi: an object representing a single taxi.
+\end_layout
+
+\begin_layout Itemize
+TaxiDriver: represents a taxi driver.
+ 
+\end_layout
+
+\begin_layout Standard
+Let us define the following symbols:
+\end_layout
+
+\begin_layout Itemize
+r: a Request object, representing the request to be forwarded;
+\end_layout
+
+\begin_layout Itemize
+Q: a Queue object, representing the queue in which the request is going
+ to be forwarded;
+\end_layout
+
+\begin_layout Itemize
+response: a variable which contains the driver response at each cycle; 
+\end_layout
+
+\begin_layout Itemize
+nextTaxi: a variable containing the next taxi to which the request is going
+ to be forwarded; 
+\end_layout
+
+\begin_layout Standard
+The pseudocode is the following:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "14cm"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+forward (r, Q)
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+1
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+while
+\series default
+(response == 
+\shape smallcaps
+refuse
+\shape default
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+2
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+nextTaxi = Q.dequeue()
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+3
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+response = CommunicationManager.sendRequest(nextTaxi.driver.cellphone, r)
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+4
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+if
+\series default
+(response == 
+\shape smallcaps
+refuse
+\shape default
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+5
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+Q.enqueue(nextTaxi)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Waiting time estimation
+\end_layout
+
+\begin_layout Standard
+We provide now a detailed description of the algorithm the application uses
+ for estimating the waiting time for a taxi.
+ The city is modeled as a graph, in which each node represents a cross and
+ each arc represents a road connecting two crosses (of course, the graph
+ is directed).
+ To each node is associated a couple of coordinates.
+ To each arc is associated a cost, computed as follows: 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+\color black
+\begin_inset Formula $cost(i\rightarrow j)=\frac{distance(i\rightarrow j)}{speed_{avg}}+trafficFactor(i,j)$
+\end_inset
+
+
+\size default
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In which:
+\end_layout
+
+\begin_layout Itemize
+AverageSpeed is the average speed of a taxi (estimated to be 40km/h); 
+\end_layout
+
+\begin_layout Itemize
+distance(i,j) is the length of the road connecting crosses i and j (obtained
+ through Google maps services); 
+\end_layout
+
+\begin_layout Itemize
+trafficFactor(i,j) is a delay depending on the traffic condition in the
+ zone containing i and j (obtained through an external service of traffic
+ estimation for Milan); 
+\end_layout
+
+\begin_layout Standard
+The TaxiAllocation Manager maintains this graph and periodically updates
+ it.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Let us define the following symbols: 
+\end_layout
+
+\begin_layout Itemize
+d: a TaxiDriver object representing the driver who accepted the request;
+ 
+\end_layout
+
+\begin_layout Itemize
+r: a Request object representing the request for which the waiting time
+ is going to be computed; 
+\end_layout
+
+\begin_layout Itemize
+G: the city graph;
+\end_layout
+
+\begin_layout Itemize
+getUpdatedSubGraph(location): returns a subgraph of the last updated graph,
+ including only the nodes in the same zone as the given location and the
+ ones in adjacent zones; 
+\end_layout
+
+\begin_layout Itemize
+nearestNode(location): returns the nearest node in G to the specified location;
+ 
+\end_layout
+
+\begin_layout Itemize
+s: the node in which the driver is located;
+\end_layout
+
+\begin_layout Itemize
+t: the node in which the meeting point is located; 
+\end_layout
+
+\begin_layout Itemize
+S: a variable storing the nodes computed during Dijkstra's algorithm; 
+\end_layout
+
+\begin_layout Itemize
+d: a vector, of size the number of nodes, containing the cost of the minimum
+ path from s to each node; The algorithm proposed uses Dijkstra's algorithm
+ to find the minimum path on the graph from the driver location to the meeting
+ point and returns its cost (which is an estimation of the waiting time).
+ 
+\end_layout
+
+\begin_layout Standard
+The algorithm proposed uses Dijkstra's algorithm to find the minimum path
+ on the graph from the driver location to the meeting point and returns
+ its cost (which is an estimation of the waiting time).
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "14cm"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset space ~
+\end_inset
+
+computeWaitingTime(d, r)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+1
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+G = getUpdatedSubGraph(d.taxi.location)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+2
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+s = nearestNode(G, d.taxi.location)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+3
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+t = nearestNode(G, r.meetingPoint)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+4
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+S = {s}
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+5
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+d[s] = 0
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+6
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+while
+\series default
+(S!=G.nodes)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+7
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+find (i→j) s.t.
+ i
+\begin_inset Formula $\in S,$
+\end_inset
+
+ j 
+\begin_inset Formula $\notin S$
+\end_inset
+
+ that minimizes d[i]+cost(i→j) 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+8
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+d[j] = d[i] + cost(i→j)
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset space ~
+\end_inset
+
+
+\size small
+\color black
+9
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+S = S 
+\begin_inset Formula $\cup$
+\end_inset
+
+{j}
+\end_layout
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+10
+\size default
+\color inherit
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\series bold
+return
+\series default
+ d[t]
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+User Interface Design
+\end_layout
+
+\begin_layout Standard
+For a complete description of user interfaces (with mockups), see the RASD
+ document.
+ In this section, we provide a graphical overview of the connections between
+ screens.
+\end_layout
+
+\begin_layout Subsubsection
+Driver Interface
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Class Diagram2.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Passenger Interface
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Class Diagram1.png
+	scale 25
+	rotateAngle 270
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Requirements Traceability
+\end_layout
+
+\begin_layout Standard
+The requirements defined in the RASD document are mapped to the components
+ of the proposed architecture as follows: 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="19" columns="3">
+<features rotate="0" booktabs="true" islongtable="true" longtabularalignment="center">
+<column alignment="left" valignment="middle" width="16pc">
+<column alignment="left" valignment="middle" width="7pc">
+<column alignment="left" valignment="middle" width="7pc">
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirement
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Components
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Comments
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R1]
+\series default
+ Every taxi call to the central system is immediately forwarded to the queue
+ associated to the zone containing the required meeting point.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiCallManager, TaxiAllocation Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R2]
+\series default
+ For each reservation, a request is sent to the queue associated to the
+ zone containing the required meeting point ten minutes before the meeting
+ time.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiAllocation Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R3]
+\series default
+ A request from the central system to taxi drivers always includes the meeting
+ point, the passenger’s name and her phone number.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Queue Manager, Communication Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R4]
+\series default
+ For each taxi allocation, the central system calculates the maximum waiting
+ time based on the taxi GPS location and the meeting point.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiAllocation Manager, GPS Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R5]
+\series default
+ Each time a taxi is allocated, the passenger is notified with the maximum
+ waiting time
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+[R6]
+\series default
+ Each time a taxi is allocated, the passenger is notified with the incoming
+ taxi ID.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TaxiAllocation Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The notification is saved in the database and eventually retrieved after
+ the next user 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R7]
+\series default
+ When a taxi driver sets her state to free, her taxi ID is inserted in the
+ last position of the queue corresponding to her current location.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Communication Manager, Queue Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R8]
+\series default
+ When a request arrives at a queue, it is forwarded in order to the drivers
+ of the taxis in the queue, beginning from the rst position, until someone
+ accepts.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Queue Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R9]
+\series default
+ When a taxi driver accepts a request, her state is set to busy.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Queue Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R10]
+\series default
+ When the state of a taxi driver turns to busy, her taxi is deleted from
+ the queue corresponding to her current location.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Communication Manager, Queue Manager, Logout Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The state of a driver is turned to busy either manually or automatically
+ (following a disconnection).
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R11]
+\series default
+ When a taxi driver refuses a request, her taxi is moved in the last position
+ of the queue corresponding to her current location.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Queue Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R12]
+\series default
+ When a taxi driver logs out from the central system, she is set to busy.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Logout Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R13]
+\series default
+ Each reservation request is accepted only if the submit time is at least
+ two hours before the meeting time.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Reservation Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R14]
+\series default
+ The system provides public APIs for the call and reservation functions.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Public Web Services
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R15]
+\series default
+ A request is automatically refused if the taxi driver does not accept within
+ 30 seconds.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Communication Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R16]
+\series default
+ A taxi driver, whose application has not responded to the system solicitations
+ for more than two minutes, is automatically logged out from the central
+ system.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Logout Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R17]
+\series default
+ Every time a driver logs in, the application stores an association between
+ her and the taxi she has specified.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Login Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R18]
+\series default
+ Every time a driver logs out, the association with her taxi is deleted.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Logout Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+[R19]
+\series default
+ The application rejects all driver login attempts in which the specified
+ taxi is already associated to another driver.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Login Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Appendix
+\end_layout
+
+\begin_layout Subsection
+Spent Hours
+\end_layout
+
+\begin_layout Itemize
+Andrea Tirinzoni: ~22h
+\end_layout
+
+\begin_layout Itemize
+Matteo Papini: ~22h
+\end_layout
+
+\end_body
+\end_document
