@@ -270,11 +270,25 @@ High level components and their interaction
 
 \begin_layout Standard
 The architecture contemplates a central system, which provides all the required
- services and manages data, and three types of clients: - Web application
- for passengers, entirely accessible via a web browser; - Mobile app for
- passengers, a hybrid app accessing the same contents as the web application;
- - Mobile app for drivers, a native application.
- The system will be implemented using Java EE technologies.
+ services and manages data, and three types of clients:
+\end_layout
+
+\begin_layout Itemize
+Web application for passengers, entirely accessible via a web browser;
+\end_layout
+
+\begin_layout Itemize
+Mobile app for passengers, a hybrid app accessing the same contents as the
+ web application;
+\end_layout
+
+\begin_layout Itemize
+Mobile app for drivers, a native application.
+ 
+\end_layout
+
+\begin_layout Standard
+The system will be implemented using Java EE technologies.
 \end_layout
 
 \begin_layout Subsubsection
@@ -767,12 +781,17 @@ The following diagram shows the interaction between components in a taxi
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Allocate Taxi.png
-	scale 70
+	filename AllocateTaxi.png
+	scale 37
+	rotateAngle 270
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Newpage newpage
 \end_inset
 
@@ -926,7 +945,13 @@ TaxiCall
 call(): performs a taxi call operation.
  INPUT: cell phone number, meeting point.
  OUTPUT: the result of the operation (either success or error).
- 
+\end_layout
+
+\begin_layout Itemize
+callExternal(): performs a taxi call operation invoked through the web service
+ (does not check whether the passenger is already registered).
+ INPUT: passenger phone number, meeting point.
+ OUTPUT: the result of the operation (either success or error).
 \end_layout
 
 \begin_layout Subsubsection*
@@ -943,7 +968,13 @@ TaxiReservation
 reserve(): performs a taxi reservation.
  INPUT: cell phone number, meeting point, meeting time, destination.
  OUTPUT: the result of the operation (either success or error).
- 
+\end_layout
+
+\begin_layout Itemize
+reserveExternal(): performs a taxi reservation invoked through the web service
+ (does not check whether the passenger is already registered).
+ INPUT: passenger phone number, meeting point, meeting time, destination.
+ OUTPUT: the result of the operation (either success or error).
 \end_layout
 
 \begin_layout Subsubsection*
@@ -1051,7 +1082,13 @@ login(): invoked remotely by drivers.
  Forwards the request to the Login Manager.
  INPUT: cell phone number, password.
  OUTPUT: the result of the operation (either success or error).
- MessageDelivery
+ 
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+MessageDelivery
 \end_layout
 
 \begin_layout Itemize
@@ -1125,7 +1162,7 @@ Peer-to-peer: it is used for the communication with driver apps.
  each other.
  The server sends asynchronous messages to the clients (e.g.
  taxi requests) and, vice-versa, the client sends asynchronous messages
- to the server(e.g.
+ to the server (e.g.
  set FREE or set BUSY).
  Thus, no server role is defined and the overall style is p2p (even though
  the clients do not communicate with each other).
@@ -1605,7 +1642,7 @@ We provide now a detailed description of the algorithm the application uses
 
 \size large
 \color black
-\begin_inset Formula $cost(i\rightarrow j)=\frac{distance(i\rightarrow j)}{speed_{avg}}+trafficFactor(i,j)$
+\begin_inset Formula $cost(i\rightarrow j)=\frac{distance(i\rightarrow j)}{averageSpeed}+trafficFactor(i,j)$
 \end_inset
 
 
@@ -1631,7 +1668,7 @@ In which:
 \end_layout
 
 \begin_layout Itemize
-AverageSpeed is the average speed of a taxi (estimated to be 40km/h); 
+averageSpeed is the average speed of a taxi (estimated to be 40km/h); 
 \end_layout
 
 \begin_layout Itemize
@@ -1641,7 +1678,7 @@ distance(i,j) is the length of the road connecting crosses i and j (obtained
 
 \begin_layout Itemize
 trafficFactor(i,j) is a delay depending on the traffic condition in the
- zone containing i and j (obtained through an external service of traffic
+ area containing i and j (obtained through an external service of traffic
  estimation for Milan); 
 \end_layout
 
@@ -1694,10 +1731,7 @@ S: a variable storing the nodes computed during Dijkstra's algorithm;
 
 \begin_layout Itemize
 d: a vector, of size the number of nodes, containing the cost of the minimum
- path from s to each node; The algorithm proposed uses Dijkstra's algorithm
- to find the minimum path on the graph from the driver location to the meeting
- point and returns its cost (which is an estimation of the waiting time).
- 
+ path from s to each node;
 \end_layout
 
 \begin_layout Standard
@@ -2429,7 +2463,7 @@ TaxiAllocation Manager
 
 \begin_layout Plain Layout
 The notification is saved in the database and eventually retrieved after
- the next user 
+ the next user HTTP request.
 \end_layout
 
 \end_inset
