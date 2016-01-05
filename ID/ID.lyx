@@ -1,0 +1,1104 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "ID"
+\pdf_author "Andrea Tirinzoni - Matteo Papini"
+\pdf_subject "Glassfish"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{./titleID.tex}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Acronyms and abbreviations
+\end_layout
+
+\begin_layout Subsubsection
+Acronyms
+\end_layout
+
+\begin_layout Itemize
+CMP: Container-Managed Persistence;
+\end_layout
+
+\begin_layout Itemize
+EJB: Enterprise JavaBean;
+\end_layout
+
+\begin_layout Itemize
+JDO: Java Data Objects;
+\end_layout
+
+\begin_layout Itemize
+API: Application Programming Interface;
+\end_layout
+
+\begin_layout Subsubsection
+Abbreviations
+\end_layout
+
+\begin_layout Itemize
+pc: persistence capable;
+\end_layout
+
+\begin_layout Subsection
+Inspected classes and methods
+\end_layout
+
+\begin_layout Standard
+The inspected subproject is:
+\end_layout
+
+\begin_layout Itemize
+appserver/persistence/cmp/support-sqlstore;
+\end_layout
+
+\begin_layout Standard
+The inspected class is:
+\end_layout
+
+\begin_layout Itemize
+src/main/java/com/sun/jdo/spi/persistence/support/sqlstore/SQLStateManager.java;
+\end_layout
+
+\begin_layout Standard
+The inspected methods are:
+\end_layout
+
+\begin_layout Itemize
+getObjectId( );
+\end_layout
+
+\begin_layout Itemize
+makePersistent( PersistenceManager pm , Object pc );
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Functional role
+\end_layout
+
+\begin_layout Standard
+The subproject is devoted to the management of CMP.
+ CMP is a technique providing persistence of objects into a relational database.
+ With CMP, the EJB container transparently and implicitly manages the persistent
+ state, so that the developer does not need to code any database access
+ functions within the enterprise bean class methods.
+\begin_inset Newline newline
+\end_inset
+
+In particular, the support-sqlstore subproject handles the persistence of
+ objects, from Object-Relation mapping to the transactional behavior of
+ the system, according to the JDO standard.
+ JDO is in turn a set of high level APIs defining a simple, transparent
+ interface between application objects and transactional data stores.
+ JDO defines the following interfaces: 
+\end_layout
+
+\begin_layout Itemize
+PersistenceManager: handles all persistence operations (persist, update,
+ delete, retrieve objects):
+\end_layout
+
+\begin_layout Itemize
+PersistenceCapable: must be implemented by each object to be made persistent;
+\end_layout
+
+\begin_layout Itemize
+PersistenceConfig: provides information of a persistent object (keys, fields,
+ etc.);
+\end_layout
+
+\begin_layout Itemize
+StateManager: manages the state transitions and contents of a persistence
+ capable object;
+\end_layout
+
+\begin_layout Standard
+We report here the javadoc of the StateManager interface:
+\end_layout
+
+\begin_layout Quote
+\begin_inset Quotes eld
+\end_inset
+
+An object that manages the state transitions and the contents of the fields
+ of a JDO Instance.
+ If a JDO Instance is persistent or transactional, it contains a non-null
+ reference to a JDO StateManager instance which is responsible for managing
+ the JDO Instance state changes and for interfacing with the JDO PersistenceMana
+ger.
+ Additionally, Persistent JDO Instances refers to an instance of the JDO
+ StateManager instance responsible for the state transitions of the instance
+ as well as managing the contents of the fields of the instance.
+ The JDO StateManager interface is the primary interface used by the JDO
+ Instance to mediate life cycle changes.
+ Non-transient JDO Instances always contain a non-null reference to an associate
+d JDO StateManager instance.
+ When a First Class Object is instantiated in the JVM, the JDO implementation
+ assigns to fields with a Tracked Second Class Object type a new instance
+ that tracks changes made to itself, and notifies the StateManager of the
+ owning First Class Object of the change.
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The class SQLStateManager is an implementation of the StateManager interface.
+ To each persistence capable object is associated an instance of this class.
+ Every time the persistence manager is required to persist an object, it
+ invokes appropriate methods of the associated SQLStateManager.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The method getObjectId() returns an object representing the JDO identity
+ of the associated persistent capable object, which is a copy (clone) of
+ its internal state used to check whether two objects represent the same
+ state in the database.
+ When the SQLStateManager of a specific pc object is created, the private
+ field storing its object id is not initialized.
+ This is done the first time the method getObjectId() is invoked (by the
+ method itself).
+ In order to do so, getObjectId() gets the pc object fields from the associated
+ PersistenceConfig implementation and builds the returned object id.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The method makePersistent( PersistenceManager pm , Object pc ) is called
+ by makePersistent(Object pc) of the PersistentManager.
+ The latter makes the specified pc object persistent.
+ In particular, it is called in the context of an active transaction for
+ a transient instance (that is, a non-persistent object) and transitions
+ it to the persistent-new state (that is, an object to be concretely stored
+ at commit).
+ In order to perform this state transition, the persistence manager invokes
+ makePersistent( PersistenceManager pm , Object pc ) of the associated SQLStateM
+anager.
+ The latter performs the transition to persistent-new and applies the persistenc
+e-by-reachability algorithm.
+ Persistence by reachability is the idea that if a transient object A references
+ another transient object B, then persisting A will also persist B.
+ Thus, the algorithm explores the object dependency graph starting from
+ the given pc and persists all the descendants.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Inspection results
+\end_layout
+
+\begin_layout Subsection
+Issues
+\end_layout
+
+\begin_layout Subsubsection
+Naming Conventions
+\end_layout
+
+\begin_layout Standard
+1.
+ 
+\bar under
+All class names, interface names, method names, class variables, method
+ variables, and constants used should have meaningful names and do what
+ the name suggests.
+\end_layout
+
+\begin_layout Itemize
+at line 620: variable 
+\begin_inset Quotes eld
+\end_inset
+
+obj
+\begin_inset Quotes erd
+\end_inset
+
+ of type Object has a definitely not meaningful name;
+\end_layout
+
+\begin_layout Itemize
+at line 646: variable 
+\begin_inset Quotes eld
+\end_inset
+
+theValue
+\begin_inset Quotes erd
+\end_inset
+
+ of type Object is initialized with the value of 
+\begin_inset Quotes eld
+\end_inset
+
+obj
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Again, the name is totally not meaningful;
+\end_layout
+
+\begin_layout Itemize
+at line 650: variable 
+\begin_inset Quotes eld
+\end_inset
+
+value
+\begin_inset Quotes erd
+\end_inset
+
+ of type Object is used to store the value of a field during a single iteration
+ of the surrounding for-loop.
+ Its name is ambiguous with respect to 
+\begin_inset Quotes eld
+\end_inset
+
+theValue
+\begin_inset Quotes erd
+\end_inset
+
+ and the difference between the two variables is not clear;
+\end_layout
+
+\begin_layout Itemize
+at line 574: variable 
+\begin_inset Quotes eld
+\end_inset
+
+debug
+\begin_inset Quotes erd
+\end_inset
+
+ contains the value of logger.isLoggable().
+ It is not clear whether the variable is used to check if it is possible
+ to log or to specify when debug mode is active;
+\end_layout
+
+\begin_layout Standard
+2.
+ 
+\bar under
+If one-character variables are used, they are used only for temporary 
+\begin_inset Quotes eld
+\end_inset
+
+throwaway
+\begin_inset Quotes erd
+\end_inset
+
+ variables, such as those used in for loops.
+\end_layout
+
+\begin_layout Itemize
+at line 623: one-character variable 
+\begin_inset Quotes eld
+\end_inset
+
+f
+\begin_inset Quotes erd
+\end_inset
+
+ is declared.
+ The variable is repeatedly used in the method (until line 735);
+\end_layout
+
+\begin_layout Standard
+7.
+ 
+\bar under
+Constants are declared using all uppercase with words separated by an underscore.
+\end_layout
+
+\begin_layout Itemize
+at line 534: class variable 
+\begin_inset Quotes eld
+\end_inset
+
+messages
+\begin_inset Quotes erd
+\end_inset
+
+ is declared as 
+\begin_inset Quotes eld
+\end_inset
+
+private static final
+\begin_inset Quotes erd
+\end_inset
+
+ but its name is not capitalized;
+\end_layout
+
+\begin_layout Subsubsection
+Indention
+\end_layout
+
+\begin_layout Subsubsection
+Braces
+\end_layout
+
+\begin_layout Subsubsection
+File Organization
+\end_layout
+
+\begin_layout Standard
+12.
+ 
+\bar under
+Blank lines and optional comments are used to separate sections.
+\end_layout
+
+\begin_layout Itemize
+At least one blank line is always used, but since it is used to separate
+ all methods, there is no clear separation between the constructor and the
+ other methods.
+\begin_inset Newline newline
+\end_inset
+
+ A double blank line could have been used at line 179; 
+\end_layout
+
+\begin_layout Standard
+13.
+ 
+\bar under
+Where practical, line length does not exceed 80 characters.
+\end_layout
+
+\begin_layout Itemize
+If we consider the spaces introduced at the beginning of each line to indent,
+ many lines in both methods have length above 80 characters.
+ Considering the high level of nesting in makePersistent(...), breaking the
+ lines to comply with the rule while keeping indentation is not feasible;
+\end_layout
+
+\begin_layout Subsubsection
+Wrapping Lines
+\end_layout
+
+\begin_layout Subsubsection
+Comments
+\end_layout
+
+\begin_layout Standard
+18.
+ 
+\bar under
+Comments are used to adequately explain what the class, interface, methods,
+ and blocks of code are doing.
+\end_layout
+
+\begin_layout Itemize
+SQLStateManager: considering that the Javadoc is blank, no other comment
+ is provided to explain what the class as a whole does;
+\end_layout
+
+\begin_layout Itemize
+getObjectId(): considering that there is no Javadoc, no other comment is
+ provided to explain what the method does (the comment at line 526 refers
+ to another method).
+ Please note that this is not a plain getter, since it has important side
+ effects.
+\begin_inset Newline newline
+\end_inset
+
+ No other comment is present, except for the auto-generated ones;
+\end_layout
+
+\begin_layout Standard
+19.
+ 
+\bar under
+Commented out code contains a reason for being commented out and a date
+ it can be removed from the source file if determined it is no longer needed.
+\end_layout
+
+\begin_layout Itemize
+at line 718,720: both are commented out lines of code but no information
+ is provided concerning the reason or their removal;
+\end_layout
+
+\begin_layout Subsubsection
+Java Source Files
+\end_layout
+
+\begin_layout Standard
+22.
+ 
+\bar under
+Check that the external program interfaces are implemented consistently
+ with what is described in the Javadoc.
+\end_layout
+
+\begin_layout Itemize
+getObjectId(): the method has no Javadoc.
+\end_layout
+
+\begin_layout Itemize
+makePersistent(): the Javadoc is very short.
+ The only explanation of what the method actually does is 
+\begin_inset Quotes eld
+\end_inset
+
+Prepares the associated object to be stored in the datastore
+\begin_inset Quotes erd
+\end_inset
+
+ at line 568, which is very vague.
+ However, the state of the object is modified, so some preparation is indeed
+ performed; see for example lines 581 to 587;
+\end_layout
+
+\begin_layout Standard
+23.
+ 
+\bar under
+Check that the javadoc is complete.
+\end_layout
+
+\begin_layout Itemize
+The class declaration of SQLStateManager has no javadoc, only its main interface
+ (StateManager) has;
+\end_layout
+
+\begin_layout Itemize
+The method getObjectId() has no javadoc, nor does it have in its declaration
+ in the interface StateManager;
+\end_layout
+
+\begin_layout Itemize
+The method makePersistent(...) has a poor and not well-formed javadoc (no descripti
+on of inputs and operations).
+ Its declaration in the interface StateManager has no javadoc;
+\end_layout
+
+\begin_layout Itemize
+Many other methods in the class have no javadoc or have a poor one;
+\end_layout
+
+\begin_layout Subsubsection
+Package and Import Statements
+\end_layout
+
+\begin_layout Subsubsection
+Class and Interface Declarations
+\end_layout
+
+\begin_layout Standard
+25.
+ 
+\bar under
+The class or interface declarations shall be in the right order.
+\bar default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+By inspecting the first lines of SQLStateManager we see that variable declaratio
+ns are randomly ordered.
+ In fact, there are: 
+\end_layout
+
+\begin_layout Itemize
+public non-static variables declared after private non-static variables
+ (e.g.
+ line 86 and 83);
+\end_layout
+
+\begin_layout Itemize
+static variables declared after non-static variables (e.g.
+ line 103 and 100);
+\end_layout
+
+\begin_layout Itemize
+public static variables declared after private static variables (e.g.
+ line 155 and 151);
+\end_layout
+
+\begin_layout Standard
+27.
+ 
+\bar under
+Check that the code is free of duplicates, long methods, big classes, breaking
+ encapsulation, as well as if coupling and cohesion are adequate.
+\end_layout
+
+\begin_layout Itemize
+Class SQLStateManager is huge (about 5000 lines, considering indentation
+ ones);
+\end_layout
+
+\begin_layout Itemize
+Method makePersistent(...) is too long (almost 200 lines, considering indentation
+ ones);
+\end_layout
+
+\begin_layout Itemize
+Method makePersistent(...) is too complex (cyclomatic complexity of 33);
+\end_layout
+
+\begin_layout Itemize
+at line 610: makePersistent(...) calls a method of the PersistenceManager.
+ Considering the former is called by the PersistenceManager itself, there
+ is a cyclic dependency between the two classes (high coupling);
+\end_layout
+
+\begin_layout Subsubsection
+Initialization and Declarations
+\end_layout
+
+\begin_layout Standard
+28.
+ 
+\bar under
+Check that variables and class members are of the correct type.
+ Check that they have the right visibility.
+\end_layout
+
+\begin_layout Itemize
+at line 86: attribute hiddenValues is public without any apparent reason
+ and is not parametrized; the visibility should be private, with the addition
+ of a getter method; the correct type is ArrayList<Object>;
+\end_layout
+
+\begin_layout Itemize
+at line 139: attribute updatedForeignReferences is not parametrized; the
+ correct type is HashSet<UpdatedForeignReference>;
+\end_layout
+
+\begin_layout Itemize
+at line 621: variable fields is not parametrized; the correct type is ArrayList<
+FieldDesc>;
+\end_layout
+
+\begin_layout Itemize
+at line 638: variable trackedFields is not parametrized; the correct type
+ is ArrayList<FieldDesc>;
+\end_layout
+
+\begin_layout Itemize
+at line 676: variable removed is not parametrized; the correct type is ArrayList
+<Object>;
+\end_layout
+
+\begin_layout Itemize
+at line 677: variable added is not parametrized; the correct type is ArrayList<O
+bject>;
+\end_layout
+
+\begin_layout Itemize
+at line 701: variable trackedFields is not parametrized; the correct type
+ is ArrayList<FieldDesc>;
+\end_layout
+
+\begin_layout Standard
+29.
+ 
+\bar under
+Check that variables are declared in the proper scope.
+\end_layout
+
+\begin_layout Itemize
+at line 541: the variable keyField is created at each iteration i to contain
+ the value of keyFields[i].
+ The variable is useless: keyFields[i] could be directly used instead;
+\end_layout
+
+\begin_layout Itemize
+at line 638: the variable trackedFields should be declared at line 645;
+\end_layout
+
+\begin_layout Standard
+33.
+ 
+\bar under
+Declarations appear at the beginning of blocks.
+ The exception is a variable can be declared in a ‘for’ loop.
+\end_layout
+
+\begin_layout Itemize
+at line 538: array keyFields[] is not declared at the beginning of the surroundi
+ng block;
+\end_layout
+
+\begin_layout Itemize
+at line 539: array keyFieldNames[] is not declared at the beginning of the
+ surrounding block;
+\end_layout
+
+\begin_layout Itemize
+at line 620: variable 
+\begin_inset Quotes eld
+\end_inset
+
+obj
+\begin_inset Quotes erd
+\end_inset
+
+ is not declared at the beginning of the surrounding block;
+\end_layout
+
+\begin_layout Itemize
+at line 621: variable 
+\begin_inset Quotes eld
+\end_inset
+
+fields
+\begin_inset Quotes erd
+\end_inset
+
+ is not declared at the beginning of the surrounding block;
+\end_layout
+
+\begin_layout Itemize
+at line 646: variable 
+\begin_inset Quotes eld
+\end_inset
+
+theValue
+\begin_inset Quotes erd
+\end_inset
+
+ is not declared at the beginning of the surrounding block;
+\end_layout
+
+\begin_layout Subsubsection
+Method Calls
+\end_layout
+
+\begin_layout Subsubsection
+Arrays
+\end_layout
+
+\begin_layout Subsubsection
+Object Comparison
+\end_layout
+
+\begin_layout Standard
+40.
+ Check that all objects are compared with 
+\begin_inset Quotes eld
+\end_inset
+
+equals
+\begin_inset Quotes erd
+\end_inset
+
+ and not with 
+\begin_inset Quotes eld
+\end_inset
+
+==
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+at line 652: 
+\begin_inset Quotes eld
+\end_inset
+
+!=
+\begin_inset Quotes erd
+\end_inset
+
+ is used instead of 
+\begin_inset Quotes eld
+\end_inset
+
+!equals
+\begin_inset Quotes erd
+\end_inset
+
+ to compare 
+\begin_inset Quotes eld
+\end_inset
+
+theValue
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+value
+\begin_inset Quotes erd
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Itemize
+at line 667: 
+\begin_inset Quotes eld
+\end_inset
+
+!=
+\begin_inset Quotes erd
+\end_inset
+
+ is used instead of 
+\begin_inset Quotes eld
+\end_inset
+
+!equals
+\begin_inset Quotes erd
+\end_inset
+
+ to compare 
+\begin_inset Quotes eld
+\end_inset
+
+theValue
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+obj
+\begin_inset Quotes erd
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Subsubsection
+Output Format
+\end_layout
+
+\begin_layout Subsubsection
+Computation, Comparisons and Assignments
+\end_layout
+
+\begin_layout Standard
+50.
+ 
+\bar under
+Check throw-catch expressions, and check that the error condition is actually
+ legitimate.
+\end_layout
+
+\begin_layout Itemize
+at line 601: it is not clear how a JDOException could arise; this is probably
+ just a conservative measure to ensure that the lock is always released;
+\end_layout
+
+\begin_layout Subsubsection
+Exceptions
+\end_layout
+
+\begin_layout Standard
+52.
+ 
+\bar under
+Check that the relevant exceptions are caught.
+\end_layout
+
+\begin_layout Itemize
+at line 549: also IllegalArgumentException should be caught.
+ 
+\begin_inset Newline newline
+\end_inset
+
+The method set() of class Field is called at line 546; the Javadoc of set()
+ specifies that the method throws IllegalArgumentException, explaining in
+ which conditions this happens.
+\begin_inset Newline newline
+\end_inset
+
+Although IllegalArgumentException is an unchecked exception, the fact that
+ it is in the method's signature and is mentioned in the Javadoc is a sign
+ that the exception should be caught;
+\end_layout
+
+\begin_layout Standard
+53.
+ 
+\bar under
+Check that the appropriate action are taken for each catch block.
+\end_layout
+
+\begin_layout Itemize
+at line 610: after catching the exception, the method release() is invoked
+ to remove the association between the SQLStateManager and the pc object
+ that was being made persistent.
+ In order to be sure that this is always carried out, it is safer to put
+ the invocation in a 
+\begin_inset Quotes eld
+\end_inset
+
+finally
+\begin_inset Quotes erd
+\end_inset
+
+ block;
+\end_layout
+
+\begin_layout Itemize
+at line 616: the 
+\begin_inset Quotes eld
+\end_inset
+
+try
+\begin_inset Quotes erd
+\end_inset
+
+ statement is used only to have a 
+\begin_inset Quotes eld
+\end_inset
+
+finally
+\begin_inset Quotes erd
+\end_inset
+
+ block in which the lock is released (line 738).
+ If an exception occurs in the 
+\begin_inset Quotes eld
+\end_inset
+
+try
+\begin_inset Quotes erd
+\end_inset
+
+ scope, no action is performed;
+\end_layout
+
+\begin_layout Subsubsection
+Flow of Control
+\end_layout
+
+\begin_layout Subsubsection
+Files
+\end_layout
+
+\begin_layout Subsection
+Other problems
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Major issues.
+\end_layout
+
+\begin_layout Itemize
+at line 621: the class attribute 
+\begin_inset Quotes eld
+\end_inset
+
+fields
+\begin_inset Quotes erd
+\end_inset
+
+ of the instance 
+\begin_inset Quotes eld
+\end_inset
+
+persistenceConfig
+\begin_inset Quotes erd
+\end_inset
+
+ of ClassDesc is accessed directly using the notation persistenceConfig.fields.
+ By inspecting ClassDesc, we see that several attributes (neither static
+ nor final) are declared as public.
+ We have two issues here: first, it is a good practice to declare class
+ fields as private and use getters and setters; second, the object itself
+ should never be returned to external classes (the rep would be exposed).
+ In the last case, it is always better to return a copy;
+\end_layout
+
+\begin_layout Itemize
+at line 675: the collection 
+\begin_inset Quotes eld
+\end_inset
+
+obj
+\begin_inset Quotes erd
+\end_inset
+
+ is checked for non-emptiness by using 
+\begin_inset Quotes eld
+\end_inset
+
+((Collection) obj).size() > 0
+\begin_inset Quotes erd
+\end_inset
+
+.
+ It is a good practice to use the method Collection.isEmpty() instead of
+ checking the size;
+\end_layout
+
+\begin_layout Itemize
+the abundance of raw types is a probable sign that the code was written
+ before the introduction of generics in the Java programming language and
+ has not been refactored afterwards;
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Minor issues.
+\end_layout
+
+\begin_layout Itemize
+at line 538 and 539: the array symbol 
+\begin_inset Quotes eld
+\end_inset
+
+[]
+\begin_inset Quotes erd
+\end_inset
+
+ is written after the variable name.
+ It is a good practice to write it after the type;
+\end_layout
+
+\begin_layout Section
+Appendix
+\end_layout
+
+\begin_layout Subsection
+Spent Hours
+\end_layout
+
+\begin_layout Itemize
+Andrea Tirinzoni: ~10h
+\end_layout
+
+\begin_layout Itemize
+Matteo Papini: ~10h
+\end_layout
+
+\end_body
+\end_document
