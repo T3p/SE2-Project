@@ -1,0 +1,1096 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Integration Test Plan Document"
+\pdf_author "Andrea Tirinzoni - Matteo Papini"
+\pdf_subject "IngSW2"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{./titleITPD.tex}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Revision History
+\end_layout
+
+\begin_layout Itemize
+version 1.0, 19/01/2016;
+\end_layout
+
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+This is the Integration Test Plan Document for the myTaxiService system.
+ It is meant to describe the integration testing process of the system's
+ components.
+ This document is used by testers during the integration phase.
+ 
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+The aim of this project is to develop a system to improve the taxi service
+ of Milan, accessible both via web and mobile applications.
+ For further details see RASD, section 1.2.
+\end_layout
+
+\begin_layout Subsection
+Definitions, Acronyms and Abbreviations
+\end_layout
+
+\begin_layout Subsubsection
+Definitions
+\end_layout
+
+\begin_layout Itemize
+Entity bean: an object representing data of the system, persisted in the
+ database; for further details, see DD;
+\end_layout
+
+\begin_layout Itemize
+Persistence layer: the set of all entity beans;
+\end_layout
+
+\begin_layout Itemize
+Logic component: a component of the business tier (see DD, section 2.3);
+\end_layout
+
+\begin_layout Itemize
+Web layer: the set of all web tier components (i.e., managed beans and web
+ pages);
+\end_layout
+
+\begin_layout Itemize
+Client layer: the native driver application (the only one having application
+ logic);
+\end_layout
+
+\begin_layout Subsubsection
+Acronyms
+\end_layout
+
+\begin_layout Itemize
+RASD: Requirements Analysis and Specification Document;
+\end_layout
+
+\begin_layout Itemize
+DD: Design Document;
+\end_layout
+
+\begin_layout Subsubsection
+Abbreviations
+\end_layout
+
+\begin_layout Subsection
+Reference Documents
+\end_layout
+
+\begin_layout Itemize
+RASD.pdf;
+\end_layout
+
+\begin_layout Itemize
+DD.pdf;
+\end_layout
+
+\begin_layout Section
+Integration Strategy
+\end_layout
+
+\begin_layout Subsection
+Entry Criteria
+\end_layout
+
+\begin_layout Standard
+Before the integration process starts, all the components must have been
+ developed and unit tested.
+ In particular, this situation is expected to be reached in the following
+ way:
+\end_layout
+
+\begin_layout Itemize
+First, the entity beans are developed and unit tested;
+\end_layout
+
+\begin_layout Itemize
+Then, the application components (enterpise beans), the web tier components
+ (managed beans and web pages) and the client application (the native app
+ for drivers) are developed.
+ All these features can be developed simultaneously, provided that stubs
+ have been previously created;
+\end_layout
+
+\begin_layout Itemize
+As soon as one of the before mentioned elements is completed, it is unit
+ tested (in order to do that, mocks of the invoked functions may be created);
+\end_layout
+
+\begin_layout Itemize
+All tests must have been succesfully completed.
+\end_layout
+
+\begin_layout Subsection
+Elements to be integrated
+\end_layout
+
+\begin_layout Standard
+The system is composed of two subsystems: the Central System and the Client
+ Application.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The Central System includes the following components to be integrated:
+\end_layout
+
+\begin_layout Itemize
+The persistence layer;
+\end_layout
+
+\begin_layout Itemize
+All the logic components (see DD, section 2.3);
+\end_layout
+
+\begin_layout Itemize
+The web layer;
+\end_layout
+
+\begin_layout Itemize
+The web services;
+\end_layout
+
+\begin_layout Standard
+The Client Application can be identified with a single component, called
+ Client Layer.
+\end_layout
+
+\begin_layout Subsection
+Integration Testing Strategy
+\end_layout
+
+\begin_layout Standard
+The selected strategy for integration testing is bottom-up.
+ The main advantages of this choice are the following:
+\end_layout
+
+\begin_layout Itemize
+The system is built incrementally, starting from components that do not
+ depend on other ones.
+ In this way a working subsystem is available at each step, giving an idea
+ on how the overall project is sorting out;
+\end_layout
+
+\begin_layout Itemize
+The sequence of integration partially mirrors the way the system was designed,
+ and presumably also the implementation process.
+ This makes the testing process more intuitive;
+\end_layout
+
+\begin_layout Itemize
+No stubs need to be created;
+\end_layout
+
+\begin_layout Subsection
+Sequence of Component/Function Integration
+\end_layout
+
+\begin_layout Subsubsection
+Software Integration Sequence
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Central System
+\bar default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The components are to be integrated according to the following sequence:
+\end_layout
+
+\begin_layout Itemize
+No integration test is needed for the persistence layer with any other component
+ (the unit tests are enough in this case);
+\end_layout
+
+\begin_layout Itemize
+The Login manager, Registration manager, GPS manager are added to the system
+ (note that they do not invoke any other component);
+\end_layout
+
+\begin_layout Itemize
+The Taxi Reservation manager is integrated with the Login manager;
+\end_layout
+
+\begin_layout Itemize
+The Queue manager's QueueModification interface is added to the system (note
+ that this sub-component does not invoke any other component);
+\end_layout
+
+\begin_layout Itemize
+The Communication manager is integrated with the Queue manager's QueueModificati
+on interface;
+\end_layout
+
+\begin_layout Itemize
+The Communication manager is integrated with the GPS manager and the Login
+ Manager;
+\end_layout
+
+\begin_layout Itemize
+The Queue manager's RequestForwarding interface is integrated with the Communica
+tion manager;
+\end_layout
+
+\begin_layout Itemize
+The Taxi Allocation manager is integrated with the GPS manager and the Queue
+ manager;
+\end_layout
+
+\begin_layout Itemize
+The Logout manager is integrated with the Communication manager and the
+ Queue manager;
+\end_layout
+
+\begin_layout Itemize
+The Taxi Call manager is integrated with the Login manager and the Taxi
+ Allocation manager;
+\end_layout
+
+\begin_layout Itemize
+The Web Services are integrated with the Taxi Reservation manager and the
+ Taxi Call manager;
+\end_layout
+
+\begin_layout Itemize
+The Web Layer is integrated with: Login manager, Registration manager, Taxi
+ Call manager, Taxi Reservation manager;
+\end_layout
+
+\begin_layout Standard
+The dependencies between components are represented in the following picture:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename graph1.jpg
+	scale 60
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename graph2a.jpg
+	scale 70
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that there is a cyclic dependence.
+ This is easily solved in order to mantain a pure bottom-up approach, as
+ follows: first the Communication Manager is integrated with a subcomponent
+ of the Queue Manager, corresponding to the QueueModification interface
+ (see DD 2.6), then the remaining subcomponent of the QueueManager is integrated
+ with the Communication Manager.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename graph3.jpg
+	scale 70
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Client Application
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\bar default
+Since this subsystem is constituted by a single component, no integration
+ testing is needed locally: it suffices that unit testing has been completed.
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Subsystem Integration Sequence
+\end_layout
+
+\begin_layout Standard
+The integration between the two subsystems reduces to the integration between
+ the Client Layer and the Communication Manager:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename graph2b.jpg
+	scale 70
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The cyclic dependence is not a problem in this case since the only two component
+s have already been tested in the previous phase.
+ 
+\end_layout
+
+\begin_layout Section
+Individual Steps and Test Description
+\end_layout
+
+\begin_layout Subsection
+Integration Test Description
+\end_layout
+
+\begin_layout Standard
+We provide a description of the tests for each step of the integration.
+ In each one of them, in addition to the call checks specified below, it
+ is also checked that the components exchange compatible data.
+\end_layout
+
+\begin_layout Subsubsection
+TaxiReservation Manager -> Login Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: Login Manager integrated with the system;
+\end_layout
+
+\begin_layout Itemize
+Drivers: Web Layer Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a taxi reservation (see DD, section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether isLoggedIn() is correctly called in the Login Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Communication Manager -> Queue Manager(QueueModification)
+\end_layout
+
+\begin_layout Itemize
+Preconditions: the Queue Manager's QueueModification interface has been
+ added to the system;
+\end_layout
+
+\begin_layout Itemize
+Drivers: TaxiDriver Application Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: cell phone number(s) (see DD,section 2.6);
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether addDriver() and removeDriver() are correctly called
+ in the Queue Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Communication Manager -> GPS Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: GPS Manager integrated with the system, 3.1.2 has already been
+ performed;
+\end_layout
+
+\begin_layout Itemize
+Drivers: TaxiDriver Application Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: cell phone number(s) (see DD,section 2.6);
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether localize() is correctly called in the GPS Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Communication Manager -> Login Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: Login Manager integrated with the system;
+\end_layout
+
+\begin_layout Itemize
+Drivers: TaxiDriver Application Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a login request (see DD,section 2.6);
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether loginDriver() is correctly called in the Login Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Queue Manager -> Communication Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: Communication Manager fully integrated with the system (3.1.2,
+ 3.1.3, 3.1.4 have been successfully executed);
+\end_layout
+
+\begin_layout Itemize
+Drivers: TaxiAllocation Manager Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: a request (see DD, section 2.6);
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether forward() is correctly called in the Queue Manager;
+\end_layout
+
+\begin_layout Subsubsection
+TaxiAllocation Manager -> GPS Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: GPS Manager integrated with the system, Queue Manager integrated
+ with the system (3.1.5);
+\end_layout
+
+\begin_layout Itemize
+Drivers: TaxiCall Manager Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: a request (see DD, section 2.6);
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether localize() is correctly called in the GPS Manager;
+\end_layout
+
+\begin_layout Subsubsection
+TaxiAllocation Manager -> Queue Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: GPS Manager integrated with the system, Queue Manager integrated
+ with the system (3.1.5);
+\end_layout
+
+\begin_layout Itemize
+Drivers: TaxiCall Manager Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: a request (see DD, section 2.6);
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether forward() is correctly called in the Queue Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Logout Manager -> Communication Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: Communication Manager fully integrated with the system (3.1.2,
+ 3.1.3, 3.1.4 have been successfully executed);
+\end_layout
+
+\begin_layout Itemize
+Drivers: none (note that no component calls the Logout Manager);
+\end_layout
+
+\begin_layout Itemize
+Inputs: a TaxiDriver is set to free.
+ Valid data for the driver must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether checkStatus() is correctly called in the Communication
+ Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Logout Manager -> Queue Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: Queue Manager integrated with the system (3.1.5);
+\end_layout
+
+\begin_layout Itemize
+Drivers: none (note that no component calls the Logout Manager);
+\end_layout
+
+\begin_layout Itemize
+Inputs: a TaxiDriver is set to free.
+ Valid data for the driver must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether removeDriver() is correctly called in the Queue Manager;
+\end_layout
+
+\begin_layout Subsubsection
+TaxiCall Manager -> Login Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: Login Manager integrated with the system
+\end_layout
+
+\begin_layout Itemize
+Drivers: Web Layer Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a taxi call (see DD, section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether isLoggedIn() is correctly called in the Login Manager;
+\end_layout
+
+\begin_layout Subsubsection
+TaxiCall Manager -> TaxiAllocation Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: TaxiAllocation Manager integrated with the system (3.1.6, 3.1.7)
+\end_layout
+
+\begin_layout Itemize
+Drivers: Web Layer Driver, Web Services Driver;
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a taxi call (see DD, section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether allocate() is correctly called in the TaxiAllocation
+ Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Web Services -> TaxiCall Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: TaxiCall Manager integrated with the system (3.1.10, 3.1.11)
+\end_layout
+
+\begin_layout Itemize
+Drivers: Client Driver (who calls the web services);
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a taxi call through the web services (see DD, section
+ 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether callExternal() is correctly called in the TaxiCall
+ Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Web Services -> TaxiReservation Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: TaxiReservation Manager integrated with the system
+\end_layout
+
+\begin_layout Itemize
+Drivers: Client Driver (who calls the web services);
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a taxi reservation through the web services (see DD,
+ section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether reserveExternal() is correctly called in the TaxiReservati
+on Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Web Layer -> Login Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: points from 3.1.1 to 3.1.13 have been successfully executed;
+\end_layout
+
+\begin_layout Itemize
+Drivers: Client Driver (who calls the web layer);
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a login request (see DD, section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether loginPassenger() is correctly called in the Login
+ Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Web Layer -> Registration Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: points from 3.1.1 to 3.1.13 have been successfully executed;
+\end_layout
+
+\begin_layout Itemize
+Drivers: Client Driver (who calls the web layer);
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a registration request (see DD, section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether register() is correctly called in the Registration
+ Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Web Layer -> TaxiCall Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: points from 3.1.1 to 3.1.13 have been successfully executed;
+\end_layout
+
+\begin_layout Itemize
+Drivers: Client Driver (who calls the web layer);
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a taxi call (see DD, section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether call() is correctly called in the TaxiCall Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Web Layer -> TaxiReservation Manager
+\end_layout
+
+\begin_layout Itemize
+Preconditions: points from 3.1.1 to 3.1.13 have been successfully executed;
+\end_layout
+
+\begin_layout Itemize
+Drivers: Client Driver (who calls the web layer);
+\end_layout
+
+\begin_layout Itemize
+Inputs: the input for a reservation (see DD, section 2.6).
+ Valid data for the requesting client must be present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: checks whether reserve() is correctly called in the TaxiReservation
+ Manager;
+\end_layout
+
+\begin_layout Subsubsection
+Client Layer -> Communication Manager 
+\end_layout
+
+\begin_layout Itemize
+Preconditions: the Central System and the Client Layer have been individually
+ tested (all their components have been integrated);
+\end_layout
+
+\begin_layout Itemize
+Drivers: none (the two systems are indipendently run);
+\end_layout
+
+\begin_layout Itemize
+Inputs: a taxi driver must be registered and present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: manually tests that remote calls to login(), setFree() and setBusy()
+ work (after setFree(), the queue position must be received and showed);
+\end_layout
+
+\begin_layout Subsubsection
+Communication Manager -> Client Layer
+\end_layout
+
+\begin_layout Itemize
+Preconditions: the Central System and the Client Layer have been individually
+ tested (all their components have been integrated);
+\end_layout
+
+\begin_layout Itemize
+Drivers: none (the two systems are indipendently run);
+\end_layout
+
+\begin_layout Itemize
+Inputs: a taxi driver must be registered and present in the database;
+\end_layout
+
+\begin_layout Itemize
+Tests: manually generates a request and check whether it is correctly forwarded
+ to the driver; manually disconnect the driver and check that it is automaticall
+y logged out;
+\end_layout
+
+\begin_layout Subsection
+Final System Check
+\end_layout
+
+\begin_layout Standard
+When all the integration tests have been successfully completed, the final
+ system can be tested as a whole.
+ This is done manually by checking all the system features through the web
+ interface and the mobile interfaces.
+ This is just a simple check to verify whether the final system is running
+ correctly, and it is not meant to substitute the final system validation.
+ For a brief description of system testing, see Appendix (Section 6.1).
+ 
+\end_layout
+
+\begin_layout Section
+Tools and Test Equipment Required
+\end_layout
+
+\begin_layout Standard
+The following tools are needed:
+\end_layout
+
+\begin_layout Itemize
+Mokito: in order to create stubs of the subsystems (Central System and Client
+ Application);
+\end_layout
+
+\begin_layout Itemize
+Arquillian: to perform integration testing;
+\end_layout
+
+\begin_layout Standard
+Manual testing is also used in the final subsystem integration (points 3.1.18
+ and 3.1.19).
+ In this case, manual testing has been chosen because the integration involves
+ already tested subsystems which are deployed on different machines, whose
+ functions can be directly checked without any automatic tool.
+\end_layout
+
+\begin_layout Section
+Program Stubs and Test Data Required
+\end_layout
+
+\begin_layout Subsection
+Program Stubs
+\end_layout
+
+\begin_layout Standard
+The following stubs are needed:
+\end_layout
+
+\begin_layout Itemize
+TaxiDriver Application stub: this is used when integrating the Central System
+ components.
+ It mocks the external interface of the Client Layer (i.e., the remote functions
+ called by the Communication Manager);
+\end_layout
+
+\begin_layout Itemize
+Central System stub: this is used when unit-testing the Client Layer.
+ It mocks the Communication Manager's MessageReception interface, called
+ remotely by the Client Application;
+\end_layout
+
+\begin_layout Itemize
+GPS stub: it mocks a real GPS device from which the GPS Manager obtains
+ its data.
+ It is used during the whole Central System's component integration;
+\end_layout
+
+\begin_layout Itemize
+External Web Service stubs: they mock each external web service called in
+ either of the system's components (e.g., the SMS Web Service, Traffic Web
+ Service, etc.);
+\end_layout
+
+\begin_layout Subsection
+Test Data Required
+\end_layout
+
+\begin_layout Standard
+The required data has already been mentioned for each test in section 3.
+ To summarize, we need:
+\end_layout
+
+\begin_layout Itemize
+Data of at least one registered user (present in the database);
+\end_layout
+
+\begin_layout Itemize
+Data of at least one TaxiDriver (present in the database);
+\end_layout
+
+\begin_layout Itemize
+Valid input data for taxi calls and reservations (i.e., valid meeting time,
+ valid destination, etc.);
+\end_layout
+
+\begin_layout Itemize
+At least one zone and one queue in the system;
+\end_layout
+
+\begin_layout Itemize
+At least one taxi in the system;
+\end_layout
+
+\begin_layout Section
+Appendix
+\end_layout
+
+\begin_layout Subsection
+System Testing
+\end_layout
+
+\begin_layout Standard
+We provide here a brief description of what we expect from the final system
+ tests.
+ 
+\begin_inset Newline newline
+\end_inset
+
+First of all, the system is tested in its entirety, considering all the
+ communication interfaces.
+ This can be done manually, as specified in section 3.2.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Then system performances are checked against the requirements specified
+ in the RASD document, section 3.3.
+ This could be achieved by using JMeter.
+ Note that further data, not specified in section 5.2, will be required.
+\begin_inset Newline newline
+\end_inset
+
+Finally, alpha and beta tests are performed for direct validation.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Spent Hours
+\end_layout
+
+\begin_layout Itemize
+Andrea Tirinzoni: ~15h
+\end_layout
+
+\begin_layout Itemize
+Matteo Papini: ~15h
+\end_layout
+
+\end_body
+\end_document
