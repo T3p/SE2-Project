@@ -961,10 +961,6 @@ The following tools are needed:
 \end_layout
 
 \begin_layout Itemize
-JUnit: as testing framework;
-\end_layout
-
-\begin_layout Itemize
 Mokito: in order to create stubs of the subsystems (Central System and Client
  Application);
 \end_layout
