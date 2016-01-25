@@ -1,0 +1,4409 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_title "Project Plan Document"
+\pdf_author "Andrea Tirinzoni - Matteo Papini"
+\pdf_subject "MyTaxiService"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+input{./titlePPD.tex}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Purpose
+\end_layout
+
+\begin_layout Standard
+This is the Project Plan Document for the myTaxiService system.
+ It is meant to provide a detailed schedule of the project, based on an
+ estimation of its costs and on a prediction of its possible risks, together
+ with the allocation of human resources to each step of the development
+ process.
+\end_layout
+
+\begin_layout Subsection
+Scope
+\end_layout
+
+\begin_layout Standard
+The aim of this project is to develop a system to improve the taxi service
+ of Milan, accessible both via web and mobile applications.
+ For further details see RASD, section 1.2.
+\end_layout
+
+\begin_layout Subsection
+Definitions, Acronyms and Abbreviations
+\end_layout
+
+\begin_layout Subsubsection
+Definitions
+\end_layout
+
+\begin_layout Standard
+For definitions regarding the system, see RASD, section 1.3.1;
+\end_layout
+
+\begin_layout Subsubsection
+Acronyms
+\end_layout
+
+\begin_layout Itemize
+RASD: Requirements Analysis and Specification Document;
+\end_layout
+
+\begin_layout Itemize
+DD: Design Document;
+\end_layout
+
+\begin_layout Itemize
+ITPD: Integration Test Plan Document;
+\end_layout
+
+\begin_layout Itemize
+UFP: Unajusted Function Points;
+\end_layout
+
+\begin_layout Itemize
+SLOC: Source Lines of Code;
+\end_layout
+
+\begin_layout Itemize
+KSLOC: Kilo Source Lines of Code (SLOC/1000);
+\end_layout
+
+\begin_layout Itemize
+ILF: Internal Logical File;
+\end_layout
+
+\begin_layout Itemize
+EIF: External Interface File;
+\end_layout
+
+\begin_layout Subsubsection
+Abbreviations
+\end_layout
+
+\begin_layout Subsection
+Reference Documents
+\end_layout
+
+\begin_layout Itemize
+http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf
+ : COCOMOII Model Definition Manual;
+\end_layout
+
+\begin_layout Itemize
+http://www.qsm.com/resources/function-point-languages-table : Conversion from
+ UFP to SLOC;
+\end_layout
+
+\begin_layout Itemize
+RASD.pdf
+\end_layout
+
+\begin_layout Itemize
+DD.pdf
+\end_layout
+
+\begin_layout Itemize
+ITPD.pdf
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Project Cost Estimation
+\end_layout
+
+\begin_layout Standard
+In this section we provide an estimation of the overall project cost (in
+ term of Person/Month effort) and of its duration.
+\begin_inset Newline newline
+\end_inset
+
+The section is organized as follows:
+\end_layout
+
+\begin_layout Itemize
+in section 2.1 we estimate the SLOC by using the Function Points approach;
+\end_layout
+
+\begin_layout Itemize
+in section 2.2 we estimate the project effort and duration by using the COCOMO
+ II model;
+\end_layout
+
+\begin_layout Itemize
+in section 2.3 we provide a comment on the results obtained;
+\end_layout
+
+\begin_layout Subsection
+Function Points
+\end_layout
+
+\begin_layout Standard
+In this section we first compute the Function Points of the system.
+ We will refer to the following table for their weights:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="4">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Function Types
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Complex
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+External Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+External Output
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+External Inquiry
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ILF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EIF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We then estimate a possible value for SLOC.
+\end_layout
+
+\begin_layout Subsubsection
+Internal Logical File
+\end_layout
+
+\begin_layout Standard
+The ILFs, data created, stored and handled by the system, together with
+ their complexity, are the following:
+\end_layout
+
+\begin_layout Itemize
+passenger data: a set of primitive data types, thus considered as simple;
+\end_layout
+
+\begin_layout Itemize
+taxi driver data: a set of primitive data types, thus considered as simple;
+\end_layout
+
+\begin_layout Itemize
+taxi data: a set of primitive data types, thus considered as simple;
+\end_layout
+
+\begin_layout Itemize
+taxi call data: a set of primitive data types, thus considered as simple;
+\end_layout
+
+\begin_layout Itemize
+taxi reservation data: a set of primitive data types, thus considered as
+ simple;
+\end_layout
+
+\begin_layout Itemize
+queue data: this is a complex data structure including data from several
+ objects; we treat it as complex;
+\end_layout
+
+\begin_layout Itemize
+zone data: a set of primitive data types, thus considered as simple;
+\end_layout
+
+\begin_layout Itemize
+request data: although this includes data from other objects, it has a really
+ simple structure; thus, we treat it as simple;
+\end_layout
+
+\begin_layout Itemize
+notification data: this is just text to be sent to the user, thus we treat
+ it as simple;
+\end_layout
+
+\begin_layout Itemize
+city topology data: this is the graph data structure mentioned in the DD;
+ it is a big data structure retrieved from another source but still handled
+ by the system; it is considered as complex;
+\end_layout
+
+\begin_layout Standard
+By summing each weight for each ILF we find a total of 86 function points.
+\end_layout
+
+\begin_layout Subsubsection
+External Interface File
+\end_layout
+
+\begin_layout Standard
+The EIFs, data used by the system but obtained from external sources, together
+ with their complexity, are the following:
+\end_layout
+
+\begin_layout Itemize
+GPS data from taxis: this is of course simple data;
+\end_layout
+
+\begin_layout Itemize
+traffic data: this is used to update the city graph and it may contain a
+ lot of information; thus we consider it as medium;
+\end_layout
+
+\begin_layout Itemize
+Google maps data (used by clients): this could be quite complex information
+ but, considering our application does not manage it directly (it uses Google
+ APIs), we consider it as simple;
+\end_layout
+
+\begin_layout Standard
+By summing each weight for each EIF we find a total of 17 function points.
+\end_layout
+
+\begin_layout Subsubsection
+External Input
+\end_layout
+
+\begin_layout Standard
+The External Inputs, elementary operations to process incoming data without
+ producing any substantial output, together with their complexity are the
+ following:
+\end_layout
+
+\begin_layout Itemize
+login (for passenger): this operation needs to perform only a few checks,
+ thus we consider it simple;
+\end_layout
+
+\begin_layout Itemize
+login (for drivers): there are just a few differences from the case above,
+ thus we consider this as simple;
+\end_layout
+
+\begin_layout Itemize
+registration: this must perform several operations (involving for example
+ the validation via SMS), thus we consider it medium;
+\end_layout
+
+\begin_layout Itemize
+taxi call: this checks only a few things more than login, thus we still
+ consider it simple;
+\end_layout
+
+\begin_layout Itemize
+taxi reservation: it is very similar to a taxi call, thus we consider it
+ simple;
+\end_layout
+
+\begin_layout Itemize
+set busy: this is a trivial operation (removal of a driver from a queue),
+ thus we consider it simple;
+\end_layout
+
+\begin_layout Standard
+By summing each weight for each External Input we find a total of 19 function
+ points.
+\end_layout
+
+\begin_layout Subsubsection
+External Output
+\end_layout
+
+\begin_layout Standard
+The External Outputs, elementary operations that generate data for the environme
+nt, together with their complexity, are the following:
+\end_layout
+
+\begin_layout Itemize
+waiting time computation: this is a complex operation to be performed frequently
+ (see DD, section 3.2);
+\end_layout
+
+\begin_layout Itemize
+queue position computation: this is a simple operation to compute the position
+ of the driver in a queue;
+\end_layout
+
+\begin_layout Itemize
+request computation: this is a simple operation to compute a request to
+ be forwarded to a driver (it just puts together simple data);
+\end_layout
+
+\begin_layout Itemize
+validation code computation: this is a simple operation to generate a random
+ code;
+\end_layout
+
+\begin_layout Standard
+By summing each weight for each External Output we find a total of 19 function
+ points.
+\end_layout
+
+\begin_layout Subsubsection
+External Inquiry
+\end_layout
+
+\begin_layout Standard
+The External Inquiries, elementary operations involving input and output,
+ together with their complexity, are the following:
+\end_layout
+
+\begin_layout Itemize
+receive notifications: this is a simple operation to retrieve the notifications
+ of a certain user;
+\end_layout
+
+\begin_layout Itemize
+set free: this is a simple operation to set a driver in free state (it also
+ returns the queue position, that is why it is an external inquiry);
+\end_layout
+
+\begin_layout Standard
+By summing each weight for each External Inquiry we find a total of 6 function
+ points.
+\end_layout
+
+\begin_layout Subsubsection
+Total Function Points
+\end_layout
+
+\begin_layout Standard
+We summarize the function points in the following table:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="31" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Function Types
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Complexity
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Weight
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+ILF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+86
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+passenger data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+taxi driver data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+taxi data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+taxi call data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+taxi reservation data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+queue data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+complex
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+zone data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+request data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+notification data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+city topology data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+complex
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+EIF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+GPS data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+traffic data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Google maps data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+External Input
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+login (passenger)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+login (driver)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+registration
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+taxi call
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+taxi reservation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+set busy
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+External Output
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+waiting time computation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+complex
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+queue position computation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+request computation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+validation code computation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+External Inquiry
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+receive notifications
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+set free
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+simple
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can sum all of them to find a total of 147 UFPs.
+\end_layout
+
+\begin_layout Subsubsection
+SLOC Estimation
+\end_layout
+
+\begin_layout Standard
+We can now estimate the SLOC of the project.
+ In order to do this, we refer to the table of 
+\begin_inset Quotes eld
+\end_inset
+
+UFPs to SLOC conversion
+\begin_inset Quotes erd
+\end_inset
+
+ (see the document linked in section 1.4).
+ Considering we are using Java EE, we have a conversion coefficient of 46.
+ Thus, we can estimate SLOC by using the following formula:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $SLOC=UFPs*46$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We obtain an estimation of 6762 SLOC (thus 6.762 KSLOC).
+\end_layout
+
+\begin_layout Subsection
+COCOMO
+\end_layout
+
+\begin_layout Standard
+In this section we estimate the project effort and duration by using the
+ COCOMO II model.
+ In order to find suitable values for all the parameters, we will refer
+ to the COCOMO II Model Definition Manual (see the references in section
+ 1.4).
+ In particular, the equations that we will consider are introduced in section
+ 1.2 of the manual.
+\begin_inset Newline newline
+\end_inset
+
+We proceed as follows:
+\end_layout
+
+\begin_layout Itemize
+in section 2.2.1 we compute the scale drivers;
+\end_layout
+
+\begin_layout Itemize
+in section 2.2.2 we compute the cost drivers;
+\end_layout
+
+\begin_layout Itemize
+in section 2.2.3 we use the computed values to estimate the above mentioned
+ quantities;
+\end_layout
+
+\begin_layout Subsubsection
+Scale Drivers
+\end_layout
+
+\begin_layout Standard
+In order to compute the scale drivers, we follow the rules and the weights
+ introduced in section 3.1 of the COCOMO manual.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The Scale Drivers are:
+\end_layout
+
+\begin_layout Itemize
+Precedentedness (PREC): myTaxiService is the first project of this type
+ we have ever done; furthermore, we lack of experience in many technologies
+ (e.g., Java EE and mobile development) and platforms (e.g., Glassfish); having
+ some experience in a few related fields (e.g., Java programming and testing),
+ we set the value for this driver to Low.
+\end_layout
+
+\begin_layout Itemize
+Development Flexibility (FLEX): in this case, the client has only set general
+ goals.
+ Only a few constraints on the architecture were imposed (e.g., web and mobile
+ interfaces).
+ The project is overall very flexible, and we can give this driver a Very
+ High value;
+\end_layout
+
+\begin_layout Itemize
+Architecture / Risk Resolution (RESL): a general risk study (with possible
+ countermeasures) is provided in section 5.
+ Considering the study is not very deep, we assign a High value to this
+ driver;
+\end_layout
+
+\begin_layout Itemize
+Team Cohesion (TEAM): all the team members know each other and physically
+ work together.
+ There is no communication issue and there is some past experience on other
+ projects.
+ Thus, we consider for this driver a Extra High value;
+\end_layout
+
+\begin_layout Itemize
+Process Maturity (PMAT): in order to estimate a value for this driver we
+ use the procedure based on KPAs (Key Process Areas) described in section
+ 3.1.5 of the COCOMO manual.
+ We set an average compliance for all the 18 KPAs of 60% (this is reasonable
+ since we performed many of the 18 activities, but with different efforts).
+ By using the formula Eq.
+ 13 (section 3.1.5 of the manual) we find a value of 3 for EPML.
+ This gives us a value High for the driver;
+\end_layout
+
+\begin_layout Standard
+We summarize the Scale Drivers, together with the corresponding Scale Factors
+ (obtained from the table in section 3.1 of the COCOMO manual), in the following
+ table:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Scale Driver
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Scale Factor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PREC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4.96
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FLEX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.01
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RESL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.83
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TEAM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Extra High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PMAT
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.12
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.96
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We get a total sum of the Scale Factors of 6.96.
+\end_layout
+
+\begin_layout Subsubsection
+Cost Drivers
+\end_layout
+
+\begin_layout Standard
+In order to compute the Cost Drivers, we follow the rules and weights introduced
+ in section 3.2 of the COCOMO manual.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The Cost Drivers are:
+\end_layout
+
+\begin_layout Itemize
+Required Software Reliability (RELY): we don't have very constraining reliabilit
+y requirements (just availability, see RASD).
+ We consider this driver as Low.
+\end_layout
+
+\begin_layout Itemize
+Data Base Size (DATA): if we consider test data of 500KB and remembering
+ that we have estimated 6762 SLOC, we have a ratio of 74, which, according
+ to the table at page 26 of the manual, gives us a Nominal value for this
+ driver; 
+\end_layout
+
+\begin_layout Itemize
+Product Complexity (CPLX): the project is of average complexity, thus we
+ consider a Nominal value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Developed for Reusability (RUSE): we have no reusability requirement, thus
+ we have a Low value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Documentation Match to Life-Cycle Needs (DOCU): the project needs a standard
+ documentation, thus we have a Nominal value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Execution Time Constraint (TIME): considering we are using two clustered
+ application servers (to be sure to achieve the required availability and
+ performance), the average use of execution time can fall below 50%.
+ Thus, we have a Nominal value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Main Storage Constraint (STOR): we have no such constraint, therefore we
+ can forget about this driver (we still use a Nominal value, so that the
+ contribute of 1 in the product will cancel out);
+\end_layout
+
+\begin_layout Itemize
+Platform Volatility (PVOL): our system is composed by many different platforms,
+ which are subject to frequent updates.
+ We consider a High value for this driver, which corresponds to an average
+ of one major update of at least one platform every two months;
+\end_layout
+
+\begin_layout Itemize
+Analyst Capability (ACAP): we don't have much experience in software design
+ and analysis, so we consider a Low value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Programmer Capability (PCAP): we have good team programming experience from
+ past projects, so we can consider a High value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Personnel Continuity (PCON): the overall continuity of our team is very
+ good, thus we consider a Very High value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Applications Experience (APEX): the team has a very poor experience on this
+ type of project, so we consider a Very Low value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Platform Experience (PLEX): the team has a poor experience on this type
+ of platforms, so we consider a Low value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Language and Tool Experience (LTEX): the team has a fairly good experience
+ on the adopted language and tools, thus we consider a Nominal value for
+ this driver;
+\end_layout
+
+\begin_layout Itemize
+Use of Software Tools (TOOL): the team has a poor experience on life-cycle
+ management tools, so we consider a Low value for this driver;
+\end_layout
+
+\begin_layout Itemize
+Multisite Development (SITE): the team is physically working together and
+ there are no communication issues.
+ Thus, we consider a value of Extra High for this driver;
+\end_layout
+
+\begin_layout Itemize
+Required Development Schedule (SCED): we don't have any acceleration or
+ stretch-out of the schedule, so we consider a Nominal value for this driver;
+\end_layout
+
+\begin_layout Standard
+We summarize the Cost Drivers, together with the associated Effort Multipliers,
+ in the following table:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="19" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Cost Driver
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Effort Multiplier
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RELY
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.92
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DATA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CPLX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+RUSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.95
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DOCU
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TIME
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+STOR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PVOL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.15
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ACAP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.19
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PCAP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.88
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PCON
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.81
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+APEX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Very Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.22
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PLEX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.09
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+LTEX
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+TOOL
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.09
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SITE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Extra High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SCED
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Nominal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Total
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.98861
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+By taking the product of all Effort Multipliers we obtain an overall contributio
+n of 0.98861.
+\end_layout
+
+\begin_layout Subsubsection
+Project Effort and Duration
+\end_layout
+
+\begin_layout Standard
+We can now compute the final estimation for the project effort and the project
+ duration.
+ As already mentioned, all the formulae are taken from the COCOMO manual
+ (see references, section 1.4).
+\begin_inset Newline newline
+\end_inset
+
+The project effort (PM) is given by:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $PM=A*KSLOC^{E}*\prod EM(i)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+where:
+\end_layout
+
+\begin_layout Itemize
+A=2.94 is a constant;
+\end_layout
+
+\begin_layout Itemize
+KSLOC has been computed in section 2.1.7;
+\end_layout
+
+\begin_layout Itemize
+EM(i) is the i-th Effort Multiplier, and the product ranges over all Cost
+ Drivers;
+\end_layout
+
+\begin_layout Standard
+The parameter E is given by:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $E=B+0.01*\sum SF(i)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+where:
+\end_layout
+
+\begin_layout Itemize
+B=0.91 is a constant;
+\end_layout
+
+\begin_layout Itemize
+SF(i) is the i-th Scale Factor, and the sum ranges over all Scale Drivers;
+\end_layout
+
+\begin_layout Standard
+Considering we have already computed:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\sum SF(i)=6.96$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\prod EM(i)=0.98861$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+we can substitute the values and we get:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $E=0.9796$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $PM=18.9$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus we have a project effort of 18.9 Person/Month.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We can estimate the project duration as:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $TDEV=C*PM^{F}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+where C=3.67 is a constant.
+ The parameter F is given by:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $F=D+0.2*(E-B)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+where D=0.28 is a constant.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+By substituting the values we get:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $F=0.29392$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $TDEV=8.7$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Thus the project will take about 9 months.
+\begin_inset Newline newline
+\end_inset
+
+We can easily compute the number of persons involved as:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $NP=PM/TDEV=2.17$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+which is really close to the actual number of people in the team (2).
+\end_layout
+
+\begin_layout Subsection
+Final Comments
+\end_layout
+
+\begin_layout Standard
+We provide here a final comment regarding the results obtained in the previous
+ sections.
+\begin_inset Newline newline
+\end_inset
+
+We obtained an ideal number of people for our team of 2.17.
+ Considering we are actually two people, the overall project duration should
+ be slightly longer (it increases after the approximation).
+ Nevertheless, the computed project duration is probably overestimated.
+ This is due to the huge importance the COCOMO model gives to certain parameters
+, which in our application do not play a fundamental role.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In order to ease the scheduling process, we will consider an overall duration
+ of 9 months, which is slightly less than the one estimated for a team of
+ exactly two people (about 9.5 months).
+ This approximation does not affect in any way the system development, and
+ it should be still overestimated.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Project Tasks and Schedule
+\end_layout
+
+\begin_layout Standard
+In this section the project tasks are identified and organized in a schedule:
+\end_layout
+
+\begin_layout Itemize
+in section 3.1 some assumption are made in order to precisely define the
+ problem;
+\end_layout
+
+\begin_layout Itemize
+in section 3.2 tasks are identified and given an estimated duration;
+\end_layout
+
+\begin_layout Itemize
+in section 3.3 the schedule is computed, taking into account dependencies
+ between tasks;
+\end_layout
+
+\begin_layout Subsection
+Assumptions
+\end_layout
+
+\begin_layout Standard
+We consider 15/10/2015 to be the starting date of the project.
+ As for the documentation already completed at the time of writing, we behave
+ as follows:
+\end_layout
+
+\begin_layout Itemize
+RASD: considered as already completed before the starting date;
+\end_layout
+
+\begin_layout Itemize
+DD: considered still to be produced (retrospectively);
+\end_layout
+
+\begin_layout Itemize
+ITPD: considered still to be produced (retrospectively);
+\end_layout
+
+\begin_layout Standard
+Two people collaborate to the project, who are also the authors of this
+ document.
+ From now on they will be referred to simply as Andrea and Matteo.
+\begin_inset Newline newline
+\end_inset
+
+We assume a duration of 9 months for the project, as estimated in Section
+ 2, with the resulting overall deadline being 15/07/2016.
+\end_layout
+
+\begin_layout Subsection
+Tasks and Their Duration
+\end_layout
+
+\begin_layout Standard
+In order to identify the tasks and their duration, we first divide the project
+ into phases, and assign to each phase a percentage of the available time,
+ approximated in 270 days.
+ To do so, we start from the estimations provided in Section 6.3 of the COCOMO
+ manual and make some minor adjustments:
+\end_layout
+
+\begin_layout Itemize
+Product Design: 15% → 40 days;
+\end_layout
+
+\begin_layout Itemize
+Programming: 50% → 135 days;
+\end_layout
+
+\begin_layout Itemize
+Integration and Test: 35% → 95 days;
+\end_layout
+
+\begin_layout Standard
+Then, for each phase, we identify the tasks, and intuitively assign to each
+ task a portion of the days previously assigned to the phase.
+ At this point, it is assumed that the two team members work together on
+ each task.
+ The possibility of overlapping tasks by assigning them to one or the other
+ of the team members is discussed in the next section.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\bar under
+Product Design
+\end_layout
+
+\begin_layout Itemize
+Compilation of the DD: 35 days;
+\end_layout
+
+\begin_layout Itemize
+Compilation of the ITPD: 5 days;
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Programming
+\end_layout
+
+\begin_layout Itemize
+Detailed design: 35 days; this task includes UML modeling of single classes/bean
+s, and the making of program skeletons;
+\end_layout
+
+\begin_layout Itemize
+Data Tier implementation and UT: 15 days; unit testing is performed along
+ with coding;
+\end_layout
+
+\begin_layout Itemize
+Business tier implementation and UT: 45 days; unit testing is performed
+ along with coding;
+\end_layout
+
+\begin_layout Itemize
+Web tier implementation and UT: 20 days; unit testing is performed along
+ with coding;
+\end_layout
+
+\begin_layout Itemize
+Mobile app development and testing: 20 days; unit testing is performed along
+ with coding;
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Integration and Test:
+\end_layout
+
+\begin_layout Itemize
+Integration testing: 15 days;
+\end_layout
+
+\begin_layout Itemize
+Complete system testing: 10 days;
+\end_layout
+
+\begin_layout Itemize
+Performance testing: 10 days; 
+\end_layout
+
+\begin_layout Itemize
+Alpha testing: 15 days;
+\end_layout
+
+\begin_layout Itemize
+Beta testing: 45 days;
+\end_layout
+
+\begin_layout Subsection
+Schedule
+\end_layout
+
+\begin_layout Subsubsection
+Dependencies
+\end_layout
+
+\begin_layout Standard
+In order to compute the project schedule, we must consider the dependencies
+ among tasks.
+ We provide here a sufficient set of dependencies:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Compilation of the ITPD
+\begin_inset Quotes erd
+\end_inset
+
+ requires that 
+\begin_inset Quotes eld
+\end_inset
+
+Compilation of the DD
+\begin_inset Quotes erd
+\end_inset
+
+ has been completed;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Detailed design
+\begin_inset Quotes erd
+\end_inset
+
+ requires that all tasks in the product design phase have been completed;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Data Tier implementation and UT
+\begin_inset Quotes erd
+\end_inset
+
+ requires that 
+\begin_inset Quotes eld
+\end_inset
+
+Detailed design
+\begin_inset Quotes erd
+\end_inset
+
+ has been completed;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Business tier implementation and UT
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Web tier implementation and UT
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Mobile app development and testing
+\begin_inset Quotes erd
+\end_inset
+
+ require that 
+\begin_inset Quotes eld
+\end_inset
+
+Data Tier implementation and UT
+\begin_inset Quotes erd
+\end_inset
+
+ has been completed;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Integration testing
+\begin_inset Quotes erd
+\end_inset
+
+ requires that 
+\begin_inset Quotes eld
+\end_inset
+
+Compilation of the ITPD
+\begin_inset Quotes erd
+\end_inset
+
+ and all tasks in the programming phase have been completed ;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Complete system testing
+\begin_inset Quotes erd
+\end_inset
+
+ requires that 
+\begin_inset Quotes eld
+\end_inset
+
+Integration testing
+\begin_inset Quotes erd
+\end_inset
+
+ has been completed;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Performance testing
+\begin_inset Quotes erd
+\end_inset
+
+ requires that 
+\begin_inset Quotes eld
+\end_inset
+
+Complete system testing
+\begin_inset Quotes erd
+\end_inset
+
+ has been completed;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Alpha testing
+\begin_inset Quotes erd
+\end_inset
+
+ requires that 
+\begin_inset Quotes eld
+\end_inset
+
+Performance testing
+\begin_inset Quotes erd
+\end_inset
+
+ has been completed;
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Beta testing
+\begin_inset Quotes erd
+\end_inset
+
+ requires that 
+\begin_inset Quotes eld
+\end_inset
+
+Alpha testing
+\begin_inset Quotes erd
+\end_inset
+
+ has been completed;
+\end_layout
+
+\begin_layout Subsubsection
+Overlaps
+\end_layout
+
+\begin_layout Standard
+The only possible overlaps are between 
+\begin_inset Quotes eld
+\end_inset
+
+Business tier implementation and UT
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Web tier implementation and UT
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Mobile app development and testing
+\begin_inset Quotes erd
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Considering that the number of developers is fixed and that they have similar
+ experience and availability, we estimate that allocating a task to a single
+ group member doubles its duration.
+ Hence, no time can be saved by letting tasks overlap.
+ We decide to allocate 
+\begin_inset Quotes eld
+\end_inset
+
+Web tier implementation and UT
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Mobile app development and testing
+\begin_inset Quotes erd
+\end_inset
+
+ to single team members, being these relatively simple tasks requiring similar
+ effort.
+ Conversely, we keep the development of the business tier a shared task
+ to exploit the continuous exchange of ideas and solutions between team
+ members.
+\end_layout
+
+\begin_layout Subsubsection
+Gantt Diagram
+\end_layout
+
+\begin_layout Standard
+\align center
+The schedule resulting from all previous consideration is provided here
+ in form of a Gantt diagram:
+\begin_inset Newpage newpage
+\end_inset
+
+
+\begin_inset Graphics
+	filename gantt.png
+	scale 55
+	rotateAngle -90
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Task Allocation
+\end_layout
+
+\begin_layout Standard
+The development of the mobile app is assigned to Matteo, while the development
+ of the web tier is assigned to Andrea.
+ This allocation has been done at random, considering that both team members
+ has no previous experience with the specific technologies to be used, and
+ no preferences of sort.
+ All other tasks are shared, in particular:
+\end_layout
+
+\begin_layout Itemize
+Compilation of DD and ITPD are done together, since critical decisions has
+ to be taken;
+\end_layout
+
+\begin_layout Itemize
+Detailed design is done together, in order to exploit the better ideas of
+ both members and to prevent integration problems;
+\end_layout
+
+\begin_layout Itemize
+In implementing the Data Tier, each team member can focus on a different
+ set of Entity Beans.
+ The division of the effort must be as fair as possible, to avoid delays
+ and lowering of motivation, so the exact allocation can be done only after
+ the detailed design;
+\end_layout
+
+\begin_layout Itemize
+Similarly, the components of the Business Tier can be divided between the
+ two members.
+ Considering the complexity of this task, we decide to allocate the components
+ in advance, estimating the required effort on the base of the Design Document
+ (see Section 4.1);
+\end_layout
+
+\begin_layout Itemize
+Integration tests, as described in the ITPD, are divided between the two
+ members in order to exploit the possible overlaps (see Section 4.2);
+\end_layout
+
+\begin_layout Itemize
+All other tasks in the testing phase are performed together in order to
+ identify and fix problems as soon as possible;
+\end_layout
+
+\begin_layout Subsection
+Business Tier Component allocation
+\end_layout
+
+\begin_layout Standard
+To allocate the components of the Business Tier to the team members, we
+ first give a raw estimation of the required effort by analyzing the DD,
+ taking into account the defined interfaces, algorithms and interactions:
+\end_layout
+
+\begin_layout Itemize
+Low effort components: Web Services, Login Manager, Registration Manager,
+ Taxi Call Manager, Taxi Reservation Manager, GPS Manager, Logout Manager;
+\end_layout
+
+\begin_layout Itemize
+Medium effort components: Communication Manager;
+\end_layout
+
+\begin_layout Itemize
+High effort components: Taxi Allocation Manager, Queue Manager;
+\end_layout
+
+\begin_layout Standard
+Then, on the base of this estimation, we allocate the components as fairly
+ as possible, following the order imposed by the dependencies highlighted
+ in the ITPD (Section 2.4.1), just for coherence:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Components allocated to Andrea:
+\bar default
+ Login Manager, Registration Manager, Communication Manager, Taxi Allocation
+ Manager, Web Services;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Components allocated to Matteo:
+\bar default
+ GPS Manager, Taxi Reservation Manager, Queue Manager, Logout Manager, Taxi
+ Call Manager;
+\end_layout
+
+\begin_layout Subsection
+Integration test allocation
+\end_layout
+
+\begin_layout Standard
+The allocation is done so to respect the dependencies and exploit the possibilit
+y of overlapping between some tests.
+ Here we make explicit reference to the ITPD, section 3.1:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Tests allocated to Andrea:
+\bar default
+ 1, 4, 5, 6, 10, 12, 15, 17, 18;
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\bar under
+Tests allocated to Matteo:
+\bar default
+ 2, 3, 8, 7, 9 ,11, 13, 14, 16, 19;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Project Risks
+\end_layout
+
+\begin_layout Standard
+In this section we provide a detailed analysis of the risks that can possibly
+ occur during the project development.
+ First, we identify the most important risks.
+ For each of them, we estimate the probability that it will occur (expressed
+ as Low,Medium,High) and its possible impact on the project (Negligible,Marginal
+,Critical,Catastrophic).
+ Then, we define some countermeasures for each identified risk, specifying
+ how to reduce its probability and/or how to remedy to its occurrence.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The risks we consider are specified in the following table:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="18" columns="3">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Risk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Probability
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Impact
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+One team member can't work (e.g., illness) at critical phases
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+One team member leaves the project
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Catastrophic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Project cost estimates are inaccurate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Negligible
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dependencies between tasks are inaccurate
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stakeholders become disengaged
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Marginal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirement misunderstanding
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Resources are inexperienced
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low team motivation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Marginal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Design is infeasible or not fit for the purpose
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Catastrophic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Failure to integrate components
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The final system doesn't meet the performance requirements
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Catastrophic
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The final system doesn't pass alpha/beta test
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirements are incomplete
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Marginal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Schedule is infeasible
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Difficulties to integrate external services
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Medium
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Requirements have big changes
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Product is complex to implement
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Critical
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+We now analyze each of the above mentioned risks, providing, if possible,
+ some countermeasures:
+\end_layout
+
+\begin_layout Itemize
+One team member can't work (e.g., illness) at critical phases: considering
+ the team is composed of two people, the project completion time could increase
+ dramatically if this happened.
+ A possible solution is to prepare the other member to substitute the unavailabl
+e colleague in case the latter is performing a high priority activity (such
+ as one involved in many dependencies).
+ In order to do that, both team members must be equally involved in the
+ early phases of the project (requirements,design,planning, etc.), so that
+ both have a complete knowledge of the whole system;
+\end_layout
+
+\begin_layout Itemize
+One team member leaves the project: this of course would be catastrophic.
+ Both team members must be motivating each other during the whole process
+ in order to minimize to probability of this happening;
+\end_layout
+
+\begin_layout Itemize
+Project cost estimates are inaccurate: as already mentioned in section 2.3,
+ the cost obtained using COCOMO could be overestimated.
+ Thus, even though the probability of this happening is pretty high, the
+ impact on the project is not relevant in our case;
+\end_layout
+
+\begin_layout Itemize
+Dependencies between tasks are inaccurate: this could have a big impact
+ on the timeline, and must be prevented by carrying out a deep analysis
+ of the tasks our project involves;
+\end_layout
+
+\begin_layout Itemize
+Stakeholders become disengaged: even though this should not have a big impact
+ on our project, we can remedy by putting a lot of effort in the requirement
+ elicitation phase.
+ If communication with the stakeholders in this phase is such that all the
+ required information are obtained, we will need fewer interactions during
+ the next phases;
+\end_layout
+
+\begin_layout Itemize
+Requirement misunderstanding: our requirements were pretty straightforward,
+ so the probability of any misunderstanding is low.
+ Anyway, we can prevent this by putting a lot of effort in the requirement
+ elicitation phase (as explained above);
+\end_layout
+
+\begin_layout Itemize
+Resources are inexperienced: as already mentioned in section 2.2.2, the team
+ lacks of experience in many of the adopted technologies.
+ The impact on the project is reduced by considering a higher duration (see
+ the Cost Drivers, section 2.2.2);
+\end_layout
+
+\begin_layout Itemize
+Low team motivation: this is pretty likely considering the project has an
+ overall duration of 9 months.
+ As already said in the second risk, both team members must be motivating
+ each other during the whole process;
+\end_layout
+
+\begin_layout Itemize
+Design is infeasible or not fit for the purpose: this would be catastrophic
+ for the project.
+ In fact, it could lead to the restart of the project or even to its cancellatio
+n.
+ To minimize the probability of this happening, a high percentage of the
+ total duration is devoted to the system design.
+ During this phase, a lot of possible cases must be taken into account,
+ while keeping a continuous interaction with the stakeholders;
+\end_layout
+
+\begin_layout Itemize
+Failure to integrate components: considering some components will be developed
+ by one team member, and others by the other member, this is likely to happen.
+ To minimize its probability, cooperation must be continuous during the
+ whole project.
+ Furthermore, component design must be performed by both members together;
+\end_layout
+
+\begin_layout Itemize
+The final system doesn't meet the performance requirements: in case this
+ happens, the consequences will be catastrophic for the system.
+ In fact, it could imply the purchase of new hardware, the re-design of
+ some components or even of the whole system.
+ To avoid this, a deep analysis must be performed during the design phase,
+ maybe asking advice to an expert of the field;
+\end_layout
+
+\begin_layout Itemize
+The final system doesn't pass alpha/beta test: this could mean that the
+ client is not satisfied with the final product, e.g.
+ because some functionalities are missing.
+ This is considered pretty unlikely, because the requirements were few and
+ clear.
+ Anyway, a constant communication with the stakeholders can help us avoid
+ this;
+\end_layout
+
+\begin_layout Itemize
+Requirements are incomplete: this is considered very likely (almost every
+ time the customer forgets something).
+ Nevertheless, we can avoid this by keeping a constant communication with
+ the stakeholders (especially in the requirement elicitation phase);
+\end_layout
+
+\begin_layout Itemize
+Schedule is infeasible: as already mentioned, this is very unlikely (the
+ duration has probably been overestimated).
+ Anyway, in case this happens we can easily postpone the final deadline,
+ considering we have no constraint on this;
+\end_layout
+
+\begin_layout Itemize
+Difficulties to integrate external services: considering the application
+ uses many external services, this is pretty likely.
+ During the design phase, it is possible to analyze several providers of
+ the same service, so that, if problems arise with one of them, it will
+ be possible to switch to another;
+\end_layout
+
+\begin_layout Itemize
+Requirements have big changes: this is considered very unlikely in our case.
+ Nevertheless, we can foresee big requirement changes by keeping a good
+ interaction with the stakeholders in the early phases of the project, trying
+ to understand deeply its scope.
+ Furthermore, the system can be designed to be extensible (in particular,
+ in terms of performance).
+\end_layout
+
+\begin_layout Itemize
+Product is complex to implement: considering we don't have much experience
+ in this type of project, it could happen that our complexity estimations
+ are wrong.
+ Nevertheless, our analysis was detailed and we consider this happening
+ very unlikely.
+ If this occurs, the implementation time could increase dramatically, and
+ we would have to postpone the final deadline;
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Appendix
+\end_layout
+
+\begin_layout Subsection
+Spent Hours
+\end_layout
+
+\begin_layout Itemize
+Andrea Tirinzoni: ~15h
+\end_layout
+
+\begin_layout Itemize
+Matteo Papini: ~15h
+\end_layout
+
+\begin_layout Subsection
+Total Hours
+\end_layout
+
+\begin_layout Standard
+The total hours spent during the whole project are:
+\end_layout
+
+\begin_layout Itemize
+RASD: 30h each;
+\end_layout
+
+\begin_layout Itemize
+DD: 22h each;
+\end_layout
+
+\begin_layout Itemize
+ID: 10h each;
+\end_layout
+
+\begin_layout Itemize
+ITPD: 15h each;
+\end_layout
+
+\begin_layout Itemize
+PPD: 15h each;
+\end_layout
+
+\begin_layout Standard
+Overall, we spent 92h each for the whole project.
+\end_layout
+
+\end_body
+\end_document
